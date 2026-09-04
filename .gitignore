@@ -6,3 +6,5 @@
 
 # 日志
 *.log
+# 本地安装产物
+node_modules/
