@@ -34,7 +34,8 @@ bash scripts/setup.sh /path/to/学员工作目录
 | `skills/` | `coach` 主规则 + `exam-orientation` 高考全貌引导 | 随包版本 |
 | `prompts/` | `/coach` 开场流程 | 随包版本 |
 | `macos/` | 提醒工具链（remind.sh + notifier） | 随包版本，部署到工作目录 `.pi/macos/` |
-| `templates/` | 标准版种子（知识节点、地图、APPEND_SYSTEM 等） | 随包版本，仅首次复制 |
+| `templates/` | 标准版种子（知识节点、地图、APPEND_SYSTEM 仅教学规则、settings、gitignore、计划） | 随包版本，仅首次复制 |
+| `AGENTS.md` | 开发规则（唯一参考事实、先图后实现） | 随包版本，仅开发加载，不进学员会话 |
 | `scripts/setup.sh` | 安装引导 | 随包版本 |
 
 ## 数据/程序分离规则
@@ -46,6 +47,12 @@ bash scripts/setup.sh /path/to/学员工作目录
    - 数据/演化件（知识节点、地图、学习计划、gitignore）：首次复制，绝不覆盖。
    - 配置件（settings.json）：首次复制；升级时手动删除后重跑可获新默认值，避免覆盖用户追加的自定义 packages。
    - 规则/工具件（APPEND_SYSTEM.md、macos/）：随包更新覆盖。pi 不从包内加载 APPEND_SYSTEM，必须部署到 `.pi/APPEND_SYSTEM.md`，升级后重跑 setup.sh 即同步新规则。
+
+## 开发规则归属
+
+- `APPEND_SYSTEM.md` 只承载**教学规则**（教学角色 + 会话流程）。它被注入每次学员会话，不包含开发规则。
+- **开发规则**在 `AGENTS.md`。它是仓库开发上下文，开发时由 pi 加载，学员会话不加载。
+- 职责分离：触达学员的提示文件与仓库开发约定不再混放。
 
 ## 开发
 
