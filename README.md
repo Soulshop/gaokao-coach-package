@@ -30,13 +30,24 @@ bash scripts/setup.sh /path/to/学员工作目录
 
 | 目录 | 内容 | 生命周期 |
 | --- | --- | --- |
-| `extensions/coach/` | 教学扩展（10 个工具、状态机、SM-2） | 随包版本 |
+| `extensions/coach/` | 教学扩展（12 个工具、状态机、SM-2、评分审计） | 随包版本 |
 | `skills/` | `coach` 主规则 + `exam-orientation` 高考全貌引导 | 随包版本 |
 | `prompts/` | `/coach` 开场流程 | 随包版本 |
 | `macos/` | 提醒工具链（remind.sh + notifier） | 随包版本，部署到工作目录 `.pi/macos/` |
 | `templates/` | 标准版种子（知识节点、地图、APPEND_SYSTEM 仅教学规则、settings、gitignore、计划） | 随包版本，仅首次复制 |
+| `templates/agents/` | 子代理定义（grading-auditor 评分复评员） | 随包版本，部署到 `.pi/agents/`，随包覆盖 |
 | `AGENTS.md` | 开发规则（唯一参考事实、先图后实现） | 随包版本，仅开发加载，不进学员会话 |
 | `scripts/setup.sh` | 安装引导 | 随包版本 |
+
+## 外部依赖注入
+
+本包经 `dependencies` 引入 `@mjakl/pi-subagent`（子代理框架），由 pi 安装本包时自动 `npm install`（适用于 git 与 npm 源），并在 `pi.extensions` 里以 `node_modules/` 路径注册其入口。消费端因此获得 `subagent` 工具与 `.pi/agents/` 项目代理发现机制，执教规则用它做评分盲评复评。
+
+注意：
+
+1. 消费端不得再自行安装 pi-subagent（全局或项目），同名 tool/flag 冲突会导致 pi 启动报错。
+2. 开发机若已全局安装 pi-subagent，在本机 `pi config` 或 settings 里对两边任选其一禁用，再在学员工作目录调试。
+3. 复评员与执教师继承同一模型（学员端不另配模型）。复评过滤判定的随机抖动；一致性统计是监测信号，不构成效度证明。
 
 ## 数据/程序分离规则
 
@@ -46,7 +57,8 @@ bash scripts/setup.sh /path/to/学员工作目录
 4. `scripts/setup.sh` 分三层：
    - 数据/演化件（知识节点、地图、学习计划、gitignore）：首次复制，绝不覆盖。
    - 配置件（settings.json）：首次复制；升级时手动删除后重跑可获新默认值，避免覆盖用户追加的自定义 packages。
-   - 规则/工具件（APPEND_SYSTEM.md、macos/）：随包更新覆盖。pi 不从包内加载 APPEND_SYSTEM，必须部署到 `.pi/APPEND_SYSTEM.md`，升级后重跑 setup.sh 即同步新规则。
+   - 规则/工具件（APPEND_SYSTEM.md、templates/agents/、macos/）：随包更新覆盖。pi 不从包内加载 APPEND_SYSTEM，pi-subagent 只发现工作目录 `.pi/agents/` 下的项目代理；两者都必须部署到工作目录，升级后重跑 setup.sh 即同步新规则。
+   - gitignore 例外：属演化件不覆盖，但 setup.sh 会追加缺失的 `.pi/state/` 忽略行（评分审计日志含学员原话，必须被忽略）。
 
 ## 开发规则归属
 

@@ -27,7 +27,8 @@
 
 | 目录 | 内容 | 生命周期 |
 | --- | --- | --- |
-| `extensions/coach/` | 教学扩展（10 工具、状态机、SM-2） | 随包版本提交 |
+| `extensions/coach/` | 教学扩展（12 工具、状态机、SM-2、评分审计） | 随包版本提交 |
+| `templates/agents/` | 子代理定义（grading-auditor 评分复评员） | 随包版本提交 |
 | `skills/` | `coach` 主规则 + `exam-orientation` 高考全貌引导 | 随包版本提交 |
 | `prompts/` | `/coach` 开场流程 | 随包版本提交 |
 | `macos/` | 提醒工具链（remind.sh + notifier），部署到 `.pi/macos/` | 随包版本提交 |
@@ -35,12 +36,22 @@
 | `scripts/setup.sh` | 安装引导 | 随包版本提交 |
 | `test/` | 逻辑与流程测试（fixture 读 templates/） | 随包版本提交 |
 
+## 外部依赖注入
+
+外部依赖可以注入消费端 pi agent，机制已验证（pi 文档 packages.md）：pi 安装 git/npm 包后自动执行 `npm install`，`pi` manifest 可用 `node_modules/` 相对路径注册依赖包的扩展入口。规则：
+
+1. 第三方运行时依赖放 `dependencies`。其他 pi 包（扩展/技能）同时列入 `bundledDependencies`，并在 `pi.extensions` 等 manifest 字段里用 `node_modules/<pkg>/...` 路径引用其资源。
+2. pi 核心包（`@earendil-works/*`、`typebox`）只能在 `peerDependencies`，且必须在 `peerDependenciesMeta` 标 `optional: true`。否则 npm 会把整套核心装进每个消费端 clone。
+3. 注入的扩展与消费端已全局安装的同名扩展共存会报 tool/flag 冲突，pi 启动失败。本包注入 `@mjakl/pi-subagent`：消费端不得再自行安装；开发机全局已装的，用 `pi config` 在本机禁用其一。
+4. 子代理的 agent 定义不随包加载：pi-subagent 只发现 `~/.pi/agent/agents/` 与工作目录 `.pi/agents/`（项目代理需项目已信任）。包内代理定义放 `templates/agents/`，由 setup.sh 按规则件覆盖部署。
+5. 复评员不指定 `model`，继承执教主模型（学员端不另配模型）。引入新依赖时必须先确认它在学员默认 registry（npmmirror）可达，再提交。
+
 ## 模板与设置要点
 
 - `templates/gitignore` 必须忽略 `.pi/git/`（分发包自动 clone 目录），否则新消费端 git 状态会被包 clone 污染。
 - `templates/APPEND_SYSTEM.md` 只放教学规则（教学角色 + 会话流程）。开发规则只在本 `AGENTS.md`。pi 不从包内加载 APPEND_SYSTEM，setup.sh 部署到 `.pi/APPEND_SYSTEM.md`。
 - `templates/settings.json` 只含 packages 引用。
-- setup.sh 三层语义：数据/演化件只首次复制；配置件首次复制不自动覆盖；规则/工具件（APPEND_SYSTEM、macos）随包更新覆盖。
+- setup.sh 三层语义：数据/演化件只首次复制；配置件首次复制不自动覆盖；规则/工具件（APPEND_SYSTEM、templates/agents、macos）随包更新覆盖。gitignore 属演化件不覆盖，但对必须由包保证的忽略行（如 `.pi/state/`），setup.sh 只做缺失追加，不改动已有行。
 
 ## 测试
 

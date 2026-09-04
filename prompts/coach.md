@@ -15,7 +15,7 @@ argument-hint: "[科目]"
 5. 如果计划到期，调用 `coach_update_plan` 完成复盘。
 6. 决定科目难度前，调用 `coach_get_state(scope=subject)`。
 7. 如果已有活动任务，从 `nextStart` 继续。否则调用 `coach_start_task`。
-8. 普通教学只问一个问题。每个回答调用 `coach_record_turn`。
+8. 普通教学只问一个问题。每个回答调用 `coach_record_turn`。有效尝试每满 3 次，对该回合做盲评复评并调用 `coach_audit_turn`。
 9. 讲解前必须取得 `coach_transition` 授权。讲后按序调用 `coach_record_verification`。
-10. 一次完整到期复习结束后，只调用一次 `coach_record_review`。
+10. 复习计分前先用子代理 `grading-auditor` 盲评复评并调用 `coach_audit_review`；取得审计编号后，一次完整到期复习只调用一次 `coach_record_review`。
 11. 结束或休息时，调用 `coach_log_session`。记录下次起点。`feeling` 只能记录学员主动报告的值。
