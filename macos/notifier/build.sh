@@ -30,4 +30,9 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
 </plist>
 PLIST
 
+# ad-hoc 签名：UNUserNotificationCenter 要求正规 bundle 签名（绑定 Info.plist
+# 与封印 bundle id）。swiftc 默认的 linker-only 签名不绑定 Info.plist，通知授权
+# 会以 didGrant=0 hasError=1 失败，故必须显式 codesign。
+codesign --force --sign - "$APP"
+
 echo "built: $APP"
