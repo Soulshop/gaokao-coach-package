@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# 运行时状态与学员数据（含姓名、作息、薄弱点，不提交）
+.pi/state/profile.json
+
+# 生成视图（由扩展从 profile.plan 重新生成，不提交）
+学习计划.md
+
+# 编译产物
+.pi/macos/notifier/CoachNotifier.app/
+
+# 日志与临时文件
+*.log
+*.tmp-*
