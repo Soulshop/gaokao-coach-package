@@ -32,6 +32,21 @@ import {
 } from "./plan.ts";
 import { addDays, isDue, nowIso, sm2 } from "./scheduler.ts";
 import {
+  appendAuditRecord,
+  auditStats,
+  differingDimensions,
+  gradingAuditPath,
+  missingArbitrations,
+  readAuditLog,
+  REVIEW_AUDIT_DIMENSIONS,
+  TURN_AUDIT_DIMENSIONS,
+  type AuditArbitration,
+  type AuditKind,
+  type AuditRecord,
+  type ReviewAuditLabels,
+  type TurnAuditLabels,
+} from "./audit.ts";
+import {
   DEFAULT_PROFILE,
   REQUIRED_SPACED_PASSES,
   createKnowledgeNode,
@@ -110,6 +125,8 @@ const EVIDENCE_KINDS = [
   "reconstruct",
   "error",
 ] as const;
+const AUDIT_DIMENSIONS = [...new Set([...TURN_AUDIT_DIMENSIONS, ...REVIEW_AUDIT_DIMENSIONS])] as string[];
+const ARBITRATION_DECISIONS = ["coach", "auditor"] as const;
 const OVERVIEW_ITEMS = ["goal", "known", "missing", "concept", "relation"] as const;
 const VERIFICATION_STEPS = ["restate", "reason", "near-transfer", "counterexample", "return"] as const;
 const EXPLANATION_GATES = ["A", "B", "C", "prerequisite"] as const;
@@ -423,6 +440,65 @@ const PlanFocusSchema = Type.Object({
   reason: Type.String({ minLength: 1 }),
 });
 
+const TurnAuditLabelsSchema = Type.Object({
+  correct: Type.Boolean(),
+  attemptDepth: StringEnum(ATTEMPT_DEPTHS),
+  progress: StringEnum(PROGRESS_STATES),
+  independent: Type.Boolean(),
+  evidenceKinds: Type.Array(StringEnum(EVIDENCE_KINDS), { maxItems: 8 }),
+});
+
+const ReviewAuditLabelsSchema = Type.Object({
+  independent: Type.Boolean(),
+  retrievalCorrect: Type.Boolean(),
+  reasonPassed: Type.Boolean(),
+  transferPassed: Type.Boolean(),
+  boundaryPassed: Type.Boolean(),
+});
+
+const AuditArbitrationSchema = Type.Object({
+  dimension: StringEnum(AUDIT_DIMENSIONS),
+  decision: StringEnum(ARBITRATION_DECISIONS),
+  evidenceQuote: Type.String({ minLength: 1, description: "裁定所依据的学员原话引用" }),
+});
+
+function buildAuditRecord(input: {
+  kind: AuditKind;
+  task: ActiveTask;
+  questionRef: string | undefined;
+  coach: TurnAuditLabels | ReviewAuditLabels;
+  auditor: TurnAuditLabels | ReviewAuditLabels;
+  arbitrations: AuditArbitration[];
+  now: string;
+}): AuditRecord {
+  const differing = differingDimensions(input.kind, input.coach, input.auditor);
+  const missing = missingArbitrations(differing, input.arbitrations);
+  if (missing.length > 0) {
+    throw new Error(`仲裁缺失维度：${missing.join("、")}。每个分歧维度都必须引用学员原话仲裁。`);
+  }
+  const extra = input.arbitrations.filter((item) => !differing.includes(item.dimension));
+  if (extra.length > 0) {
+    throw new Error(
+      `判定一致的维度不需要仲裁：${extra.map((item) => item.dimension).join("、")}。`,
+    );
+  }
+  for (const item of input.arbitrations) {
+    if (!item.evidenceQuote.trim()) throw new Error(`仲裁 ${item.dimension} 缺少学员原话引用`);
+  }
+  return {
+    id: uniqueId("audit"),
+    date: input.now,
+    kind: input.kind,
+    taskId: input.task.id,
+    knowledgeId: input.task.knowledgeId,
+    questionRef: input.questionRef,
+    coach: input.coach,
+    auditor: input.auditor,
+    arbitrations: input.arbitrations,
+    agreed: differing.length === 0,
+  };
+}
+
 const getStateTool = defineTool({
   name: "coach_get_state",
   label: "Coach: Get State",
@@ -475,6 +551,7 @@ const getStateTool = defineTool({
       recentSessions: profile.sessions.slice(-3),
       recentEmotionalSignals: recentEmotionalSignals(profile),
       pacing: recentFeelingPolicy(profile),
+      gradingAudit: auditStats(readAuditLog(ctx.cwd)),
     };
 
     if (params.scope === "full") {
@@ -1127,6 +1204,10 @@ const recordReviewTool = defineTool({
     "每个到期节点只调用一次。工具从本任务已记录回答计算独立检索、理由、近迁移和边界结果，再推进一次 SM-2。",
   parameters: Type.Object({
     taskId: Type.String({ minLength: 1 }),
+    auditId: Type.String({
+      minLength: 1,
+      description: "coach_audit_review 返回的审计编号。复习计分必须携带本次盲评复评的审计编号。",
+    }),
     note: Type.Optional(Type.String()),
   }),
   async execute(_callId, params, _signal, _onUpdate, ctx) {
@@ -1154,6 +1235,21 @@ const recordReviewTool = defineTool({
         throw new Error(
           `完整复习评估需要至少四轮独立生成性作答。当前仅 ${successfulTurns.length} 轮。`,
         );
+      }
+
+      const auditId = params.auditId?.trim();
+      if (!auditId) {
+        throw new Error("复习计分必须携带审计编号。先用 grading-auditor 子代理盲评五标准，再调用 coach_audit_review。");
+      }
+      const audit = readAuditLog(ctx.cwd).find((record) => record.id === auditId);
+      if (!audit) {
+        throw new Error(`审计编号不存在：${auditId}。复习复评返回的编号必须原样携带。`);
+      }
+      if (audit.kind !== "review" || audit.taskId !== task.id || audit.knowledgeId !== task.knowledgeId) {
+        throw new Error("该审计不属于本复习任务。复习计分必须携带本任务的 coach_audit_review 审计编号。");
+      }
+      if (audit.date < task.startedAt) {
+        throw new Error("该审计早于本复习任务的开始时间，不能用于本次计分");
       }
       const independentPass = (kinds: EvidenceKind[]) =>
         task.turns.some(
@@ -1238,6 +1334,8 @@ const recordReviewTool = defineTool({
         intervalDays: node.intervalDays,
         nextReview: node.nextReview,
         evidence: reviewEvidence,
+        auditId: audit.id,
+        auditAgreed: audit.agreed,
       };
     });
 
@@ -1251,6 +1349,132 @@ const recordReviewTool = defineTool({
         },
       ],
       details: value,
+    };
+  },
+});
+
+const auditTurnTool = defineTool({
+  name: "coach_audit_turn",
+  label: "Coach: Audit Turn",
+  description:
+    "教学回合抽检：记录执教判定与复评员（grading-auditor 子代理）盲评的逐维比较。有效尝试每满 3 次时对该回合调用。分歧维度必须仲裁并引用学员原话。",
+  parameters: Type.Object({
+    taskId: Type.String({ minLength: 1 }),
+    questionRef: Type.String({ minLength: 1, description: "被抽审回合的 questionKey" }),
+    coachLabels: TurnAuditLabelsSchema,
+    auditorLabels: TurnAuditLabelsSchema,
+    arbitrations: Type.Array(AuditArbitrationSchema, { maxItems: 8 }),
+  }),
+  async execute(_callId, params, _signal, _onUpdate, ctx) {
+    const profile = readState(ctx);
+    ensureInitialized(profile);
+    const task = activeTaskOrThrow(profile, params.taskId);
+    if (task.mode !== "teach") {
+      throw new Error("回合抽检只用于教学任务。复习任务使用 coach_audit_review。");
+    }
+    const questionRef = params.questionRef.trim();
+    const turn = [...task.turns].reverse().find((item) => item.questionKey === questionRef);
+    if (!turn) throw new Error(`当前任务没有 questionKey 为 ${questionRef} 的已记录回合`);
+
+    const records = readAuditLog(ctx.cwd);
+    const duplicated = records.some(
+      (record) =>
+        record.kind === "turn-sample" && record.taskId === task.id && record.questionRef === questionRef,
+    );
+    if (duplicated) throw new Error("该回合已复评过，不得重复审计");
+
+    const record = buildAuditRecord({
+      kind: "turn-sample",
+      task,
+      questionRef,
+      coach: params.coachLabels as TurnAuditLabels,
+      auditor: params.auditorLabels as TurnAuditLabels,
+      arbitrations: params.arbitrations as AuditArbitration[],
+      now: nowIso(),
+    });
+    await withFileMutationQueue(gradingAuditPath(ctx.cwd), async () => {
+      appendAuditRecord(ctx.cwd, record);
+    });
+    const stats = auditStats([...records, record]);
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: record.agreed
+            ? `复评一致。一致性累计 ${stats.agreed}/${stats.total}。`
+            : `复评存在分歧并已仲裁：${differingDimensions("turn-sample", record.coach as TurnAuditLabels, record.auditor as TurnAuditLabels).join("、")}。一致性累计 ${stats.agreed}/${stats.total}。`,
+        },
+      ],
+      details: { audit: record, stats },
+    };
+  },
+});
+
+const auditReviewTool = defineTool({
+  name: "coach_audit_review",
+  label: "Coach: Audit Review",
+  description:
+    "复习复评：在复习回合全部记录后、coach_record_review 之前调用。记录执教判定与复评员盲评的逐维比较，返回审计编号。分歧维度必须仲裁并引用学员原话。",
+  parameters: Type.Object({
+    taskId: Type.String({ minLength: 1 }),
+    coachLabels: ReviewAuditLabelsSchema,
+    auditorLabels: ReviewAuditLabelsSchema,
+    arbitrations: Type.Array(AuditArbitrationSchema, { maxItems: 8 }),
+  }),
+  async execute(_callId, params, _signal, _onUpdate, ctx) {
+    const profile = readState(ctx);
+    ensureInitialized(profile);
+    const task = activeTaskOrThrow(profile, params.taskId);
+    if (task.mode !== "review") throw new Error("复习复评只用于到期复习任务");
+
+    const successfulTurns = task.turns.filter(
+      (turn) =>
+        turn.attemptDepth === "generative" &&
+        turn.correct &&
+        turn.independent &&
+        turn.progress === "new" &&
+        !turn.coreError &&
+        turn.evidenceKinds.length > 0,
+    );
+    if (successfulTurns.length < 4) {
+      throw new Error(
+        `先完成全部复习回合并记录，再复评。当前独立生成性作答 ${successfulTurns.length} 轮（需 ≥4）。`,
+      );
+    }
+
+    const records = readAuditLog(ctx.cwd);
+    const lastTurnAt = task.turns[task.turns.length - 1]?.date;
+    const covered = records.some(
+      (record) =>
+        record.kind === "review" && record.taskId === task.id && lastTurnAt !== undefined && record.date >= lastTurnAt,
+    );
+    if (covered) {
+      throw new Error("本任务已完成覆盖最新回合的复习复评。仲裁后补问回合的，先记录新回合再复评。");
+    }
+
+    const record = buildAuditRecord({
+      kind: "review",
+      task,
+      questionRef: undefined,
+      coach: params.coachLabels as ReviewAuditLabels,
+      auditor: params.auditorLabels as ReviewAuditLabels,
+      arbitrations: params.arbitrations as AuditArbitration[],
+      now: nowIso(),
+    });
+    await withFileMutationQueue(gradingAuditPath(ctx.cwd), async () => {
+      appendAuditRecord(ctx.cwd, record);
+    });
+    const stats = auditStats([...records, record]);
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: `复习复评完成。审计编号 ${record.id}，在 coach_record_review 中携带。${record.agreed ? "复评一致。" : "分歧已仲裁，以仲裁后判定为准。"}一致性累计 ${stats.agreed}/${stats.total}。`,
+        },
+      ],
+      details: { audit: record, stats },
     };
   },
 });
@@ -1505,6 +1729,8 @@ export default function coachExtension(pi: ExtensionAPI): void {
   pi.registerTool(transitionTool);
   pi.registerTool(recordVerificationTool);
   pi.registerTool(recordReviewTool);
+  pi.registerTool(auditTurnTool);
+  pi.registerTool(auditReviewTool);
   pi.registerTool(updatePlanTool);
   pi.registerTool(logSessionTool);
   pi.registerTool(dueReviewsTool);

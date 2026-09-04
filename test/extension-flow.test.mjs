@@ -65,6 +65,23 @@ function createHarness(initialFocus) {
   };
 }
 
+async function auditReview(run, taskId) {
+  const labels = {
+    independent: true,
+    retrievalCorrect: true,
+    reasonPassed: true,
+    transferPassed: true,
+    boundaryPassed: true,
+  };
+  const result = await run("coach_audit_review", {
+    taskId,
+    coachLabels: labels,
+    auditorLabels: labels,
+    arbitrations: [],
+  });
+  return result.details.audit.id;
+}
+
 function problemMap(relation) {
   return {
     goal: "判断关系是否成立",
@@ -274,7 +291,8 @@ test("长期掌握只在三个独立到期复习任务后产生", async () => {
         questionKey: `review-${review}-boundary`,
         evidenceKinds: ["boundary"],
       });
-      const result = await harness.run("coach_record_review", { taskId });
+      const auditId = await auditReview(harness.run, taskId);
+      const result = await harness.run("coach_record_review", { taskId, auditId });
       assert.equal(result.details.spacedPasses, review);
       assert.equal(result.details.state, review === 3 ? "mastered" : "review");
     }
@@ -340,10 +358,172 @@ test("复习工具拒绝无回答和不完整评估", async () => {
     ]) {
       await recordTurn(harness.run, taskId, { questionKey: key, evidenceKinds: kinds });
     }
-    const result = await harness.run("coach_record_review", { taskId });
+    await assert.rejects(() => harness.run("coach_record_review", { taskId }), /必须携带审计编号/);
+    const auditId = await auditReview(harness.run, taskId);
+    const result = await harness.run("coach_record_review", { taskId, auditId });
     assert.equal(result.details.fullPass, false);
     assert.equal(result.details.state, "learning");
     assert.equal(result.details.evidence.boundaryPassed, false);
+  } finally {
+    harness.cleanup();
+  }
+});
+
+test("教学抽检记录盲评比较、仲裁并拒绝重复", async () => {
+  const knowledgeId = "数学::函数::输入对应输出";
+  const harness = createHarness(knowledgeId);
+  try {
+    await harness.initialize();
+    const started = await harness.run("coach_start_task", {
+      knowledgeId,
+      mode: "teach",
+      goal: "判断输入输出关系",
+      problemMap: problemMap("每个输入只有一个确定输出"),
+    });
+    const taskId = started.details.task.id;
+    await recordTurn(harness.run, taskId, { questionKey: "define", evidenceKinds: ["define"] });
+    await recordTurn(harness.run, taskId, { questionKey: "relate", evidenceKinds: ["relate"] });
+    await recordTurn(harness.run, taskId, { questionKey: "reason", evidenceKinds: ["reason"] });
+
+    const coachLabels = {
+      correct: true,
+      attemptDepth: "generative",
+      progress: "new",
+      independent: true,
+      evidenceKinds: ["reason"],
+    };
+
+    const agreed = await harness.run("coach_audit_turn", {
+      taskId,
+      questionRef: "reason",
+      coachLabels,
+      auditorLabels: coachLabels,
+      arbitrations: [],
+    });
+    assert.equal(agreed.details.audit.agreed, true);
+
+    await assert.rejects(
+      () =>
+        harness.run("coach_audit_turn", {
+          taskId,
+          questionRef: "reason",
+          coachLabels,
+          auditorLabels: coachLabels,
+          arbitrations: [],
+        }),
+      /已复评/,
+    );
+
+    const disputedLabels = { ...coachLabels, correct: false, progress: "none", evidenceKinds: [] };
+    await assert.rejects(
+      () =>
+        harness.run("coach_audit_turn", {
+          taskId,
+          questionRef: "define",
+          coachLabels,
+          auditorLabels: disputedLabels,
+          arbitrations: [],
+        }),
+      /仲裁缺失维度：correct、progress、evidenceKinds/,
+    );
+
+    await assert.rejects(
+      () =>
+        harness.run("coach_audit_turn", {
+          taskId,
+          questionRef: "define",
+          coachLabels,
+          auditorLabels: disputedLabels,
+          arbitrations: [
+            { dimension: "correct", decision: "auditor", evidenceQuote: "学员原话：定义写反了" },
+            { dimension: "progress", decision: "auditor", evidenceQuote: "学员原话：没有新增" },
+            { dimension: "independent", decision: "coach", evidenceQuote: "学员原话：独立完成" },
+            { dimension: "evidenceKinds", decision: "auditor", evidenceQuote: "学员原话：未给出理由" },
+          ],
+        }),
+      /不需要仲裁/,
+    );
+
+    const disputed = await harness.run("coach_audit_turn", {
+      taskId,
+      questionRef: "define",
+      coachLabels,
+      auditorLabels: disputedLabels,
+      arbitrations: [
+        { dimension: "correct", decision: "auditor", evidenceQuote: "学员原话：定义写反了" },
+        { dimension: "progress", decision: "coach", evidenceQuote: "学员原话：定位了卡点" },
+        { dimension: "evidenceKinds", decision: "auditor", evidenceQuote: "学员原话：未给出理由" },
+      ],
+    });
+    assert.equal(disputed.details.audit.agreed, false);
+    assert.equal(disputed.details.stats.total, 2);
+    assert.equal(disputed.details.stats.agreed, 1);
+
+    const lines = readFileSync(join(harness.cwd, ".pi", "state", "grading-audit.jsonl"), "utf8")
+      .trim()
+      .split("\n");
+    assert.equal(lines.length, 2);
+
+    const state = await harness.run("coach_get_state", {});
+    assert.equal(state.details.summary.gradingAudit.total, 2);
+    assert.equal(state.details.summary.gradingAudit.agreed, 1);
+  } finally {
+    harness.cleanup();
+  }
+});
+
+test("复习计分必须携带本任务的复评审计编号", async () => {
+  const knowledgeId = "数学::函数::输入对应输出";
+  const harness = createHarness(knowledgeId);
+  try {
+    await harness.initialize();
+    let started = await harness.run("coach_start_task", {
+      knowledgeId,
+      mode: "teach",
+      goal: "判断输入输出关系",
+      problemMap: problemMap("每个输入只有一个确定输出"),
+    });
+    let taskId = started.details.task.id;
+    await recordTurn(harness.run, taskId, { questionKey: "define", evidenceKinds: ["define"] });
+    await recordTurn(harness.run, taskId, { questionKey: "relate", evidenceKinds: ["relate", "reason"] });
+    await recordTurn(harness.run, taskId, { questionKey: "near-transfer", evidenceKinds: ["near-transfer"] });
+    await harness.run("coach_transition", { taskId, action: "finish-verified" });
+
+    const profile = harness.readProfile();
+    profile.knowledge[knowledgeId].nextReview = "2000-01-01T00:00:00.000Z";
+    harness.writeProfile(profile);
+    started = await harness.run("coach_start_task", {
+      knowledgeId,
+      mode: "review",
+      goal: "间隔复习输入输出关系",
+      problemMap: problemMap("每个输入只有一个确定输出"),
+    });
+    taskId = started.details.task.id;
+
+    await assert.rejects(() => auditReview(harness.run, taskId), /先完成全部复习回合/);
+
+    await recordTurn(harness.run, taskId, { questionKey: "retrieve", evidenceKinds: ["apply"] });
+    await recordTurn(harness.run, taskId, { questionKey: "reason", evidenceKinds: ["reason"] });
+    await recordTurn(harness.run, taskId, { questionKey: "transfer", evidenceKinds: ["near-transfer"] });
+    await recordTurn(harness.run, taskId, { questionKey: "boundary", evidenceKinds: ["boundary"] });
+
+    await assert.rejects(
+      () => harness.run("coach_record_review", { taskId, auditId: "audit-伪造" }),
+      /审计编号不存在/,
+    );
+
+    const auditId = await auditReview(harness.run, taskId);
+    await assert.rejects(() => auditReview(harness.run, taskId), /覆盖最新回合/);
+
+    // 补问新回合后允许复审并拿到新编号
+    await recordTurn(harness.run, taskId, { questionKey: "boundary-2", evidenceKinds: ["boundary"] });
+    const secondAuditId = await auditReview(harness.run, taskId);
+    assert.notEqual(secondAuditId, auditId);
+
+    const result = await harness.run("coach_record_review", { taskId, auditId: secondAuditId });
+    assert.equal(result.details.fullPass, true);
+    assert.equal(result.details.auditId, secondAuditId);
+    assert.equal(result.details.auditAgreed, true);
   } finally {
     harness.cleanup();
   }

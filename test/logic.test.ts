@@ -16,6 +16,18 @@ import {
   reviewQuality,
   type TurnInput,
 } from "../extensions/coach/teaching.ts";
+import {
+  appendAuditRecord,
+  auditStats,
+  differingDimensions,
+  missingArbitrations,
+  readAuditLog,
+  type AuditRecord,
+} from "../extensions/coach/audit.ts";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { appendFileSync } from "node:fs";
 
 const NOW = "2026-01-01T00:00:00.000Z";
 
@@ -477,6 +489,82 @@ test("知识目录别名解析到正式 ID", () => {
   });
   assert.equal(canonicalKnowledgeId(catalog, "数学::旧模块::旧名"), "数学::模块::新名");
   assert.equal(requireKnowledge(catalog, "数学::旧模块::旧名").id, "数学::模块::新名");
+});
+
+test("评分审计逐维比较且证据类型按集合比较", () => {
+  const base = {
+    correct: true,
+    attemptDepth: "generative" as const,
+    progress: "new" as const,
+    independent: true,
+    evidenceKinds: ["reason", "relate"] as const,
+  };
+  assert.deepEqual(differingDimensions("turn-sample", { ...base }, { ...base }), []);
+  assert.deepEqual(
+    differingDimensions(
+      "turn-sample",
+      { ...base, evidenceKinds: ["relate", "reason"] },
+      { ...base, evidenceKinds: ["reason", "relate"] },
+    ),
+    [],
+  );
+  assert.deepEqual(
+    differingDimensions("turn-sample", { ...base }, { ...base, correct: false, evidenceKinds: ["error"] }),
+    ["correct", "evidenceKinds"],
+  );
+  assert.deepEqual(
+    differingDimensions(
+      "review",
+      { independent: true, retrievalCorrect: true, reasonPassed: true, transferPassed: true, boundaryPassed: true },
+      { independent: true, retrievalCorrect: true, reasonPassed: false, transferPassed: true, boundaryPassed: false },
+    ),
+    ["reasonPassed", "boundaryPassed"],
+  );
+});
+
+test("仲裁必须恰好覆盖分歧维度", () => {
+  const differing = ["correct", "evidenceKinds"];
+  assert.deepEqual(missingArbitrations(differing, []), differing);
+  assert.deepEqual(
+    missingArbitrations(differing, [
+      { dimension: "correct", decision: "auditor", evidenceQuote: "学员原话" },
+      { dimension: "evidenceKinds", decision: "coach", evidenceQuote: "学员原话" },
+    ]),
+    [],
+  );
+});
+
+test("审计日志只追加、容忍损坏行并统计一致率", () => {
+  const cwd = mkdtempSync(join(tmpdir(), "coach-audit-"));
+  try {
+    const record = (id: string, agreed: boolean): AuditRecord => ({
+      id,
+      date: "2026-01-01T00:00:00.000Z",
+      kind: "turn-sample",
+      taskId: "task-1",
+      knowledgeId: "数学::函数::输入对应输出",
+      questionRef: "q1",
+      coach: { correct: true, attemptDepth: "generative", progress: "new", independent: true, evidenceKinds: ["reason"] },
+      auditor: { correct: true, attemptDepth: "generative", progress: "new", independent: true, evidenceKinds: ["reason"] },
+      arbitrations: [],
+      agreed,
+    });
+    appendAuditRecord(cwd, record("audit-1", true));
+    appendAuditRecord(cwd, record("audit-2", false));
+    appendFileSync(join(cwd, ".pi", "state", "grading-audit.jsonl"), "{损坏行\n");
+
+    const records = readAuditLog(cwd);
+    assert.equal(records.length, 2);
+    const stats = auditStats(records);
+    assert.equal(stats.total, 2);
+    assert.equal(stats.agreed, 1);
+    assert.equal(stats.disagreements, 1);
+    assert.equal(stats.agreementRate, 0.5);
+    assert.equal(stats.byKind["turn-sample"].total, 2);
+    assert.equal(stats.byKind.review.total, 0);
+  } finally {
+    rmSync(cwd, { recursive: true, force: true });
+  }
 });
 
 test("两周计划生成学员视图并在复盘后滚动", () => {
