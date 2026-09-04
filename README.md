@@ -42,7 +42,10 @@ bash scripts/setup.sh /path/to/学员工作目录
 1. 包内无 `profile.json`、无运行时知识节点实例、无学习计划内容。
 2. 数据单向流动：包 → 工作目录。工作目录的演化数据绝不回写包。
 3. `catalog.ts` 永远读取工作目录的 `学习资料/知识节点.json`（演化版），可用环境变量 `GAOKAO_COACH_KNOWLEDGE_CATALOG` 覆盖。
-4. 升级分发包不会覆盖工作目录中的演化数据。
+4. `scripts/setup.sh` 分三层：
+   - 数据/演化件（知识节点、地图、学习计划、gitignore）：首次复制，绝不覆盖。
+   - 配置件（settings.json）：首次复制；升级时手动删除后重跑可获新默认值，避免覆盖用户追加的自定义 packages。
+   - 规则/工具件（APPEND_SYSTEM.md、macos/）：随包更新覆盖。pi 不从包内加载 APPEND_SYSTEM，必须部署到 `.pi/APPEND_SYSTEM.md`，升级后重跑 setup.sh 即同步新规则。
 
 ## 开发
 

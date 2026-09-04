@@ -10,6 +10,9 @@
 # 编译产物
 .pi/macos/notifier/CoachNotifier.app/
 
+# 分发包自动 clone（由 pi 管理，不提交）
+.pi/git/
+
 # 日志与临时文件
 *.log
 *.tmp-*
