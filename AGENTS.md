@@ -50,6 +50,28 @@ node --experimental-strip-types --test test/logic.test.ts test/extension-flow.te
 
 改任何逻辑后必须跑测试。改目录结构（新增/删除节点）时校验 `templates/知识节点.json`（ID、前置边、无环）。
 
+## 提交规范
+
+本仓库遵循 Conventional Commits 风格，与 `~/singbox-files` 一致：
+
+```
+类型(作用域): 中文主题
+```
+
+- 类型用英文前缀：`feat`、`fix`、`docs`、`refactor`、`chore`、`config`、`cleanup`、`dev`、`revert`。
+- 跨模块或大改动加括号作用域，例如 `fix(coach):`、`refactor(setup):`、`docs(templates):`。简单改动可无作用域。
+- 主题单行，信息密度高，包含具体细节（文件名、节点数、路径、行为变化）。不以句号结尾。
+- 复杂改动用 `- ` 清单列正文，每条一行；简单改动无正文。
+- 遵循 atomic commit：一个提交只包含一个可独立还原的行为及其直接配套。
+
+示例：
+
+```
+feat: 新增 exam-orientation 高考全貌引导技能（三问三讲一复述）
+fix(scheduler): 日期计算改 UTC，去除午夜临近的到期漂移
+refactor(catalog): 知识目录路径改可配置，默认读工作目录演化版
+```
+
 ## 发布
 
 - 随时可推 main（消费端不带 @ref 跟随更新）。
