@@ -56,7 +56,7 @@
 ## 测试
 
 ```bash
-node --experimental-strip-types --test test/logic.test.ts test/extension-flow.test.mjs
+node --experimental-strip-types --test test/logic.test.ts test/extension-flow.test.mjs test/reminder.test.ts
 ```
 
 改任何逻辑后必须跑测试。改目录结构（新增/删除节点）时校验 `templates/知识节点.json`（ID、前置边、无环）。

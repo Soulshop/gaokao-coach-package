@@ -8,15 +8,15 @@
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>
-    <string>/Users/soulshop/gaokao-coach/.pi/macos/remind.sh</string>
+    <string>{{REMIND_SH}}</string>
   </array>
 
   <key>StartCalendarInterval</key>
   <dict>
     <key>Hour</key>
-    <integer>20</integer>
+    <integer>{{HOUR}}</integer>
     <key>Minute</key>
-    <integer>0</integer>
+    <integer>{{MINUTE}}</integer>
   </dict>
 
   <key>RunAtLoad</key>

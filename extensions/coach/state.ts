@@ -7,6 +7,7 @@
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { CONFIG_DIR_NAME } from "@earendil-works/pi-coding-agent";
+import { REMINDER_TIME_RE } from "./reminder.ts";
 
 export const PROFILE_VERSION = 2;
 export const REQUIRED_SPACED_PASSES = 3;
@@ -290,6 +291,11 @@ export interface SessionRecord {
   nextStart?: string;
 }
 
+export interface ReminderConfig {
+  enabled: boolean;
+  time: string; // "HH:MM" 24h，launchd StartCalendarInterval
+}
+
 export interface Profile {
   version: number;
   initialized: boolean;
@@ -298,6 +304,7 @@ export interface Profile {
   knowledge: Record<string, KnowledgeNode>;
   teaching: TeachingState;
   sessions: SessionRecord[];
+  reminder: ReminderConfig;
 }
 
 export const DEFAULT_PROFILE: Profile = {
@@ -319,6 +326,7 @@ export const DEFAULT_PROFILE: Profile = {
   knowledge: {},
   teaching: { activeTask: null, pausedTasks: [], completedTasks: [] },
   sessions: [],
+  reminder: { enabled: false, time: "20:00" },
 };
 
 export function createKnowledgeNode(id: string, subject: string, name: string): KnowledgeNode {
@@ -454,6 +462,13 @@ function migrateProfile(raw: unknown): Profile {
         }
       : { activeTask: null, pausedTasks: [], completedTasks: [] },
     sessions: Array.isArray(raw.sessions) ? (raw.sessions as SessionRecord[]) : [],
+    reminder: (() => {
+      const r = isRecord(raw.reminder) ? raw.reminder : {};
+      return {
+        enabled: typeof r.enabled === "boolean" ? r.enabled : false,
+        time: typeof r.time === "string" && REMINDER_TIME_RE.test(r.time) ? r.time : "20:00",
+      };
+    })(),
     version: PROFILE_VERSION,
   };
 
