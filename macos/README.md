@@ -44,7 +44,7 @@ bash remind.sh
 
 1. 通知的点击回调归「发通知的 app」所有，故小程序发出通知后常驻等待，12 小时未点击自动退出。这段时间内它留在后台，无 Dock 图标。
 2. 发送通知前用 `pkill -f CoachNotifier` 清残留实例，避免每天堆积。
-3. 已实测：LSUIElement app 下点击横幅稳定触发回调并打开 Terminal。自动载入「当天教学会话」尚未接线（见下条）。
+3. 已实测：LSUIElement app 下点击横幅稳定触发回调并打开终端（装了 Ghostty 则用 Ghostty，否则 Terminal）启动 pi。自动载入「当天教学会话」尚未接线（见下条）。
 4. 自动载入「当天教学会话」尚未接线：当前唤起的是新会话，妹妹需手动输入 `/coach` 或输入「开始学习」。后续可用 remind.sh 生成 kickoff 文本或使用 pi 的会话恢复参数补上。
 
 ## 日志
