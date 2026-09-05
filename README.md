@@ -30,8 +30,9 @@ bash scripts/setup.sh /path/to/学员工作目录
 
 | 目录 | 内容 | 生命周期 |
 | --- | --- | --- |
-| `extensions/coach/` | 教学扩展（15 个工具、状态机、SM-2、评分审计、提醒控制） | 随包版本 |
-| `skills/` | `coach` 主规则 + `exam-orientation` 高考全貌引导 | 随包版本 |
+| `extensions/coach/` | 教学扩展（12 个工具、状态机、SM-2、评分审计） | 随包版本 |
+| `extensions/reminder/` | 提醒控制扩展（reminder_get/set/test，渲染 plist + launchctl bootstrap） | 随包版本 |
+| `skills/` | `coach` 主规则 + `exam-orientation` 高考全貌 + `reminder` 提醒控制 | 随包版本 |
 | `prompts/` | `/coach` 开场流程 | 随包版本 |
 | `macos/` | 提醒工具链（remind.sh + notifier） | 随包版本，部署到工作目录 `.pi/macos/` |
 | `templates/` | 标准版种子（知识节点、地图、APPEND_SYSTEM 仅教学规则、settings、gitignore、计划） | 随包版本，仅首次复制 |
