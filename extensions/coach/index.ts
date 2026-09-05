@@ -81,13 +81,6 @@ import {
   verificationRemediation,
   type TurnInput,
 } from "./teaching.ts";
-import {
-  installReminder,
-  isReminderLoaded,
-  remindShPath,
-  REMINDER_TIME_RE,
-  testReminder,
-} from "./reminder.ts";
 
 const FIRST_ELECTIVES = ["物理", "历史"] as const;
 const SECOND_ELECTIVES = ["化学", "生物", "政治", "地理"] as const;
@@ -597,7 +590,7 @@ const completeInitTool = defineTool({
   name: "coach_complete_init",
   label: "Coach: Complete Init",
   description:
-    "完成严格初始化并生成首个两周计划。姓名、选科、时长、时段、提醒时间、六科基础、六科校内进度、长期目标、主攻和里程碑都必须齐全。提醒时间可选，默认 20:00；初始化时自动渲染 plist 并 launchctl load。",
+    "完成严格初始化并生成首个两周计划。姓名、选科、时长、时段、六科基础、六科校内进度、长期目标、主攻和里程碑都必须齐全。",
   parameters: Type.Object({
     name: Type.String({ minLength: 1 }),
     firstElective: StringEnum(FIRST_ELECTIVES),
@@ -621,13 +614,8 @@ const completeInitTool = defineTool({
     milestoneTitle: Type.String({ minLength: 1 }),
     milestoneKnowledgeIds: Type.Array(Type.String({ minLength: 1 }), { minItems: 1 }),
     milestoneSuccessCriteria: Type.Array(Type.String({ minLength: 1 }), { minItems: 1 }),
-    reminderTime: Type.Optional(Type.String({ description: "每日提醒时间 HH:MM 24h，默认 20:00" })),
   }),
   async execute(_callId, params, _signal, _onUpdate, ctx) {
-    const reminderTimeInput = typeof params.reminderTime === "string" ? params.reminderTime.trim() : "20:00";
-    if (!REMINDER_TIME_RE.test(reminderTimeInput)) {
-      throw new Error("提醒时间必须是 HH:MM 24h 格式，如 20:00");
-    }
     const catalog = loadCatalog(ctx.cwd);
     const { profile } = await mutateProfile(
       ctx,
@@ -718,23 +706,15 @@ const completeInitTool = defineTool({
         );
         profile.initialized = true;
         profile.sessions.push({ date: now, mode: "init", outcome: "初始化与首个两周计划完成" });
-        profile.reminder = { enabled: true, time: reminderTimeInput };
       },
       true,
     );
-
-    let reminderNote = `提醒 ${reminderTimeInput} 已装载`;
-    try {
-      installReminder(ctx.cwd, { enabled: true, time: reminderTimeInput });
-    } catch (error) {
-      reminderNote = `提醒时间已存为 ${reminderTimeInput}，但 launchd 装载失败：${error instanceof Error ? error.message : String(error)}`;
-    }
 
     return {
       content: [
         {
           type: "text",
-          text: `初始化完成。备考科目：${profile.learner.subjects.join("、")}。首个两周计划已写入 学习计划.md。${reminderNote}。`,
+          text: `初始化完成。备考科目：${profile.learner.subjects.join("、")}。首个两周计划已写入 学习计划.md。`,
         },
       ],
       details: { initialized: true, learner: profile.learner, plan: profile.plan },
@@ -1741,81 +1721,6 @@ const dueReviewsTool = defineTool({
   },
 });
 
-const getReminderTool = defineTool({
-  name: "coach_get_reminder",
-  label: "Coach: Get Reminder",
-  description:
-    "读取每日提醒配置与 launchd 装载状态。返回 enabled、time(HH:MM)、loaded、remindShPath。计划复盘或调整提醒前查看。",
-  parameters: Type.Object({}),
-  async execute(_callId, _params, _signal, _onUpdate, ctx) {
-    const profile = readState(ctx);
-    const summary = {
-      enabled: profile.reminder.enabled,
-      time: profile.reminder.time,
-      loaded: isReminderLoaded(),
-      remindShPath: remindShPath(ctx.cwd),
-    };
-    return { content: [{ type: "text", text: boundedJson(summary) }], details: summary };
-  },
-});
-
-const setReminderTool = defineTool({
-  name: "coach_set_reminder",
-  label: "Coach: Set Reminder",
-  description:
-    "设置每日提醒时间(HH:MM 24h)与启停，写入 profile.reminder 并渲染 plist + launchctl load/unload。无需 sudo。改时间或启用/禁用都用它。",
-  parameters: Type.Object({
-    time: Type.Optional(Type.String({ description: "提醒时间 HH:MM 24h，如 20:00" })),
-    enabled: Type.Optional(Type.Boolean({ description: "是否启用并装载 launchd" })),
-  }),
-  async execute(_callId, params, _signal, _onUpdate, ctx) {
-    const { profile } = await mutateProfile(
-      ctx,
-      (profile) => {
-        if (typeof params.time === "string") {
-          const t = params.time.trim();
-          if (!REMINDER_TIME_RE.test(t)) throw new Error("提醒时间必须是 HH:MM 24h 格式，如 20:00");
-          profile.reminder.time = t;
-        }
-        if (typeof params.enabled === "boolean") profile.reminder.enabled = params.enabled;
-      },
-      true,
-    );
-    const result = installReminder(ctx.cwd, profile.reminder);
-    return {
-      content: [
-        {
-          type: "text",
-          text: `提醒已更新：时间 ${profile.reminder.time}，启用 ${profile.reminder.enabled}，launchd ${result.loaded ? "已装载" : "未装载"}。`,
-        },
-      ],
-      details: { reminder: profile.reminder, loaded: result.loaded },
-    };
-  },
-});
-
-const testReminderTool = defineTool({
-  name: "coach_test_reminder",
-  label: "Coach: Test Reminder",
-  description:
-    "立即跑 remind.sh 弹一条提醒通知做 smoke test，不改 launchd 与提醒配置。首次会触发系统通知权限框。",
-  parameters: Type.Object({}),
-  async execute(_callId, _params, _signal, _onUpdate, ctx) {
-    const result = testReminder(ctx.cwd);
-    return {
-      content: [
-        {
-          type: "text",
-          text: result.fired
-            ? `已触发 remind.sh。${result.output ? `输出：${result.output}` : "通知应在数秒内弹出。"}`
-            : `remind.sh 执行失败：${result.output}`,
-        },
-      ],
-      details: result,
-    };
-  },
-});
-
 export default function coachExtension(pi: ExtensionAPI): void {
   pi.registerTool(getStateTool);
   pi.registerTool(completeInitTool);
@@ -1829,9 +1734,6 @@ export default function coachExtension(pi: ExtensionAPI): void {
   pi.registerTool(updatePlanTool);
   pi.registerTool(logSessionTool);
   pi.registerTool(dueReviewsTool);
-  pi.registerTool(getReminderTool);
-  pi.registerTool(setReminderTool);
-  pi.registerTool(testReminderTool);
 
   pi.on("session_start", async (_event, ctx) => {
     let profile: Profile;

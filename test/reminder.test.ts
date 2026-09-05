@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
-import { parseReminderTime, renderPlist, REMINDER_TIME_RE } from "../extensions/coach/reminder.ts";
+import { parseReminderTime, renderPlist, REMINDER_TIME_RE } from "../extensions/reminder/reminder.ts";
 
 test("parseReminderTime 合法 HH:MM", () => {
   assert.deepEqual(parseReminderTime("20:30"), { hour: 20, minute: 30 });

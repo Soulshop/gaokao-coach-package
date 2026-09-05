@@ -1,22 +1,18 @@
 /**
- * 提醒机制控制：渲染 launchd plist 并 load/unload。
+ * 提醒机制控制：渲染 launchd plist 并 bootstrap/bootout。
  *
- * AGENT 经 coach_set_reminder 完全控制提醒时间与启停，无需 sudo。
- * 时间与启停的唯一状态源是 profile.reminder；本模块负责把状态落到 OS：
- * 渲染 .pi/macos/com.gaokao.coach.plist 模板，写入 ~/Library/LaunchAgents/，并 launchctl load。
+ * reminder_set 经此把 profile.reminder 状态落到 OS：渲染 .pi/macos/com.gaokao.coach.plist
+ * 模板，写入 ~/Library/LaunchAgents/，并 launchctl bootstrap。无需 sudo。
+ * 本扩展独立于教学；状态字段 profile.reminder 的 schema 在 ../coach/state.ts。
  */
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import type { ReminderConfig } from "../coach/state.ts";
 
 export const REMINDER_LABEL = "com.gaokao.coach";
 export const REMINDER_TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
-
-export interface ReminderConfig {
-  enabled: boolean;
-  time: string; // "HH:MM" 24h
-}
 
 export function parseReminderTime(time: string): { hour: number; minute: number } {
   if (!REMINDER_TIME_RE.test(time)) {
@@ -26,7 +22,7 @@ export function parseReminderTime(time: string): { hour: number; minute: number 
 }
 
 function macosDir(cwd: string): string {
-  // 与 state.ts 的 CONFIG_DIR_NAME 一致（".pi"）；此处硬编码以脱离 pi 运行时依赖，便于单测。
+  // 与 state.ts 的 CONFIG_DIR_NAME 一致（".pi"）；硬编码以脱离 pi 运行时依赖，便于单测。
   return join(cwd, ".pi", "macos");
 }
 

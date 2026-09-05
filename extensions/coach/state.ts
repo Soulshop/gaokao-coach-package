@@ -7,7 +7,7 @@
 import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { CONFIG_DIR_NAME } from "@earendil-works/pi-coding-agent";
-import { REMINDER_TIME_RE } from "./reminder.ts";
+import { REMINDER_TIME_RE } from "../reminder/reminder.ts";
 
 export const PROFILE_VERSION = 2;
 export const REQUIRED_SPACED_PASSES = 3;

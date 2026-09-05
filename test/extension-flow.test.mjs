@@ -528,3 +528,10 @@ test("复习计分必须携带本任务的复评审计编号", async () => {
     harness.cleanup();
   }
 });
+
+test("reminder 扩展注册 3 个工具", async () => {
+  const rem = await loadExtensions([join(ROOT, "extensions", "reminder", "index.ts")], ROOT);
+  if (rem.errors.length > 0) throw new Error(JSON.stringify(rem.errors));
+  const names = [...rem.extensions[0].tools].map(([name]) => name).sort();
+  assert.deepEqual(names, ["reminder_get", "reminder_set", "reminder_test"]);
+});
