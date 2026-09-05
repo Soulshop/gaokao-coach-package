@@ -18,16 +18,15 @@
    chmod +x remind.sh
    ```
 
-3. 改定时时间与路径。编辑 `com.gaokao.coach.plist`：
-   - `ProgramArguments` 里 remind.sh 的绝对路径
-   - `StartCalendarInterval` 的 Hour/Minute（当前 20:00）
+3. 定时由教员控制，无需手动编辑。`com.gaokao.coach.plist` 是带 token 的模板（`{{REMIND_SH}}`/`{{HOUR}}`/`{{MINUTE}}`）：`coach_complete_init` 渲染并 `launchctl bootstrap` 装载到 `~/Library/LaunchAgents/`，每日到点弹通知。改时间或启停用 `coach_set_reminder`，查状态用 `coach_get_reminder`，立即弹一条测试用 `coach_test_reminder`。
 
-4. 安装 LaunchAgent 并加载：
+4. 手动备用（不推荐，仅在脱离教员时）：替换 token 后 `launchctl bootstrap`：
 
    ```bash
+   # 替换 {{REMIND_SH}} 为本目录 remind.sh 绝对路径、{{HOUR}}/{{MINUTE}} 为时间
    cp com.gaokao.coach.plist ~/Library/LaunchAgents/
-   launchctl unload ~/Library/LaunchAgents/com.gaokao.coach.plist 2>/dev/null || true
-   launchctl load ~/Library/LaunchAgents/com.gaokao.coach.plist
+   launchctl bootout gui/$(id -u)/com.gaokao.coach 2>/dev/null || true
+   launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.gaokao.coach.plist
    ```
 
 5. 通知权限：首次通知会在系统设置里申请「通知」权限，需在妹妹的 Mac 上允许 CoachNotifier。
