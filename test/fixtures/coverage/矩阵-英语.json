@@ -1,0 +1,2474 @@
+{
+ "subject": "英语",
+ "books": [
+  {
+   "title": "普通高中教科书·英语必修 第一册",
+   "level": "高中",
+   "rows": [
+    {
+     "chapter": "WELCOME UNIT",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "WELCOME UNIT",
+     "section": "Reading and Thinking: First Impressions",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "WELCOME UNIT",
+     "section": "Discovering Useful Structures: Basic sentence structures",
+     "nodes": [
+      "英语::句法::五大基本句型"
+     ]
+    },
+    {
+     "chapter": "WELCOME UNIT",
+     "section": "Reading for Writing: A student profile",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "WELCOME UNIT",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 1 TEENAGE LIFE",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 1 TEENAGE LIFE",
+     "section": "Reading and Thinking: The Freshman Challenge",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 TEENAGE LIFE",
+     "section": "Discovering Useful Structures: Noun phrases, adjective phrases, and adverb phrases",
+     "nodes": [
+      "英语::词汇::名词形容词与副词短语"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 TEENAGE LIFE",
+     "section": "Reading for Writing: A letter of advice",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 TEENAGE LIFE",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 1 TEENAGE LIFE",
+     "section": "Video Time: Learning Across Generations",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 1 TEENAGE LIFE",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 TRAVELLING AROUND",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 2 TRAVELLING AROUND",
+     "section": "Reading and Thinking: Travel Peru",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 TRAVELLING AROUND",
+     "section": "Discovering Useful Structures: The present continuous tense: expressing future plans",
+     "nodes": [
+      "英语::时态::现在进行时表将来"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 TRAVELLING AROUND",
+     "section": "Reading for Writing: A travel plan",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 TRAVELLING AROUND",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 TRAVELLING AROUND",
+     "section": "Video Time: Machu Picchu",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 2 TRAVELLING AROUND",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 SPORTS AND FITNESS",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 3 SPORTS AND FITNESS",
+     "section": "Reading and Thinking: Living Legends",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 SPORTS AND FITNESS",
+     "section": "Discovering Useful Structures: Tag questions",
+     "nodes": [
+      "英语::句法::附加疑问句"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 SPORTS AND FITNESS",
+     "section": "Reading for Writing: A page in a wellness book",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 SPORTS AND FITNESS",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 SPORTS AND FITNESS",
+     "section": "Video Time: The Karsts of China: A Vertical Journey",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 3 SPORTS AND FITNESS",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 NATURAL DISASTERS",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 4 NATURAL DISASTERS",
+     "section": "Reading and Thinking: The Night the Earth Didn’t Sleep",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 NATURAL DISASTERS",
+     "section": "Discovering Useful Structures: Restrictive relative clauses (1) (that, which, who, whom, whose)",
+     "nodes": [
+      "英语::从句::定语从句的修饰关系",
+      "英语::从句::定语从句的限制与补充关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 NATURAL DISASTERS",
+     "section": "Reading for Writing: A summary of a news report",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 NATURAL DISASTERS",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 NATURAL DISASTERS",
+     "section": "Video Time: Tsunami: Killer Wave",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 4 NATURAL DISASTERS",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 LANGUAGES AROUND THE WORLD",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 5 LANGUAGES AROUND THE WORLD",
+     "section": "Reading and Thinking: The Chinese Writing System: Connecting the Past and the Present",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 LANGUAGES AROUND THE WORLD",
+     "section": "Discovering Useful Structures: Restrictive relative clauses (2) (where, when, why, prep + which/whom)",
+     "nodes": [
+      "英语::从句::定语从句的修饰关系",
+      "英语::从句::定语从句的限制与补充关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 LANGUAGES AROUND THE WORLD",
+     "section": "Reading for Writing: A blog about English study",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 LANGUAGES AROUND THE WORLD",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 LANGUAGES AROUND THE WORLD",
+     "section": "Video Time: Chinese Characters",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 5 LANGUAGES AROUND THE WORLD",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Face-down Generation",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Be a Good Tourist",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Cool Cold Sports",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Story of an Eyewitness",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Polyglots: What Are They and Who Can Be One?",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "普通高中教科书·英语必修 第二册",
+   "level": "高中",
+   "rows": [
+    {
+     "chapter": "UNIT 1 CULTURAL HERITAGE",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 1 CULTURAL HERITAGE",
+     "section": "Reading and Thinking: A Picture Is Worth a Thousand Words",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 CULTURAL HERITAGE",
+     "section": "Discovering Useful Structures: Restrictive relative clauses (3)",
+     "nodes": [
+      "英语::从句::定语从句的修饰关系",
+      "英语::从句::定语从句的限制与补充关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 CULTURAL HERITAGE",
+     "section": "Reading for Writing: A news report about cultural heritage protection",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 CULTURAL HERITAGE",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 1 CULTURAL HERITAGE",
+     "section": "Video Time: The Great Wall",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 1 CULTURAL HERITAGE",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 WILDLIFE PROTECTION",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 2 WILDLIFE PROTECTION",
+     "section": "Reading and Thinking: A Day in the Clouds",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 WILDLIFE PROTECTION",
+     "section": "Discovering Useful Structures: The present continuous passive voice",
+     "nodes": [
+      "英语::语态::被动语态的形式与焦点"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 WILDLIFE PROTECTION",
+     "section": "Reading for Writing: A poster about an endangered species",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 WILDLIFE PROTECTION",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 WILDLIFE PROTECTION",
+     "section": "Video Time: The Elephant Whisperers",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 2 WILDLIFE PROTECTION",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 THE INTERNET",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 3 THE INTERNET",
+     "section": "Reading and Thinking: Stronger Together: How We Have Been Changed by the Internet",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 THE INTERNET",
+     "section": "Discovering Useful Structures: The present perfect passive voice",
+     "nodes": [
+      "英语::语态::被动语态的形式与焦点",
+      "英语::时态::现在完成时的时间联系"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 THE INTERNET",
+     "section": "Reading for Writing: A blog post about online safety",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 THE INTERNET",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 THE INTERNET",
+     "section": "Video Time: Social Media and Teen Health",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 3 THE INTERNET",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 HISTORY AND TRADITIONS",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 4 HISTORY AND TRADITIONS",
+     "section": "Reading and Thinking: What’s in a Name?",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 HISTORY AND TRADITIONS",
+     "section": "Discovering Useful Structures: Past participles (1) as the attribute and the object complement",
+     "nodes": [
+      "英语::非谓语::分词的修饰与状语关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 HISTORY AND TRADITIONS",
+     "section": "Reading for Writing: A description of a beautiful or unusual place",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 HISTORY AND TRADITIONS",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 HISTORY AND TRADITIONS",
+     "section": "Video Time: An Introduction to Historic London",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 4 HISTORY AND TRADITIONS",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 MUSIC",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 5 MUSIC",
+     "section": "Reading and Thinking: The Virtual Choir",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 MUSIC",
+     "section": "Discovering Useful Structures: Past participles (2) as the predicative and the adverbial",
+     "nodes": [
+      "英语::非谓语::分词的修饰与状语关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 MUSIC",
+     "section": "Reading for Writing: A speech about how music can change a person’s life",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 MUSIC",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 MUSIC",
+     "section": "Video Time: World Music",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 5 MUSIC",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Great Wall",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Elephant Whisperers",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Social Media and Teen Health",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "An Introduction to Historic London",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "World Music",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "普通高中教科书·英语必修 第三册",
+   "level": "高中",
+   "rows": [
+    {
+     "chapter": "UNIT 1 FESTIVALS AND CELEBRATIONS",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 1 FESTIVALS AND CELEBRATIONS",
+     "section": "Reading and Thinking: Why Do We Celebrate Festivals?",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 FESTIVALS AND CELEBRATIONS",
+     "section": "Discovering Useful Structures: The -ing form (1) as the attribute and the predicative",
+     "nodes": [
+      "英语::非谓语::动名词的句法功能"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 FESTIVALS AND CELEBRATIONS",
+     "section": "Reading for Writing: A narrative essay about a festival or celebration experience",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 FESTIVALS AND CELEBRATIONS",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 1 FESTIVALS AND CELEBRATIONS",
+     "section": "Video Time: The Lantern Festival",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 1 FESTIVALS AND CELEBRATIONS",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 MORALS AND VIRTUES",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 2 MORALS AND VIRTUES",
+     "section": "Reading and Thinking: Mother of Ten Thousand Babies",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 MORALS AND VIRTUES",
+     "section": "Discovering Useful Structures: The -ing form (2) as the object complement and the adverbial",
+     "nodes": [
+      "英语::非谓语::分词的修饰与状语关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 MORALS AND VIRTUES",
+     "section": "Reading for Writing: A review of a moral fable",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 MORALS AND VIRTUES",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 MORALS AND VIRTUES",
+     "section": "Video Time: Confucius and Ren",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 2 MORALS AND VIRTUES",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 DIVERSE CULTURES",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 3 DIVERSE CULTURES",
+     "section": "Reading and Thinking: The Chinese in San Francisco",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 DIVERSE CULTURES",
+     "section": "Discovering Useful Structures: Ellipsis",
+     "nodes": [
+      "英语::句法::省略结构的还原"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 DIVERSE CULTURES",
+     "section": "Reading for Writing: An introduction to your city or town",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 DIVERSE CULTURES",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 DIVERSE CULTURES",
+     "section": "Video Time: World’s Biggest Melting Pot",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 3 DIVERSE CULTURES",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 SPACE EXPLORATION",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 4 SPACE EXPLORATION",
+     "section": "Reading and Thinking: Space: The Final Frontier",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 SPACE EXPLORATION",
+     "section": "Discovering Useful Structures: Infinitives (1) as the attribute and the adverbial",
+     "nodes": [
+      "英语::非谓语::不定式的句法功能"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 SPACE EXPLORATION",
+     "section": "Reading for Writing: An argumentative essay about space exploration",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 SPACE EXPLORATION",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 SPACE EXPLORATION",
+     "section": "Video Time: Exploring Mars",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 4 SPACE EXPLORATION",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 THE VALUE OF MONEY",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 5 THE VALUE OF MONEY",
+     "section": "Reading and Thinking: The Million Pound Bank Note, Act 1, Scene 3",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 THE VALUE OF MONEY",
+     "section": "Discovering Useful Structures: Review of modal verbs",
+     "nodes": [
+      "英语::语气::情态动词的语义强度"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 THE VALUE OF MONEY",
+     "section": "Reading for Writing: A play script of a scene from The Million Pound Bank Note",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 THE VALUE OF MONEY",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 THE VALUE OF MONEY",
+     "section": "Video Time: At the Hotel",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 5 THE VALUE OF MONEY",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Chinese Spring Festival",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Taxi Ride I’ll Never Forget",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Symbols of American Culture",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Homes on Mars?",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Million Pound Bank Note, Act 2, Scene 3",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The past future tense",
+     "nodes": [
+      "英语::时态::过去将来时的时间视角"
+     ]
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "普通高中教科书·英语选择性必修 第一册",
+   "level": "高中",
+   "rows": [
+    {
+     "chapter": "UNIT 1 PEOPLE OF ACHIEVEMENT",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 1 PEOPLE OF ACHIEVEMENT",
+     "section": "Reading and Thinking: Tu Youyou Awarded Nobel Prize",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 PEOPLE OF ACHIEVEMENT",
+     "section": "Discovering Useful Structures: Non-restrictive relative clauses",
+     "nodes": [
+      "英语::从句::定语从句的限制与补充关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 PEOPLE OF ACHIEVEMENT",
+     "section": "Reading for Writing: A description of someone you admire",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 PEOPLE OF ACHIEVEMENT",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 1 PEOPLE OF ACHIEVEMENT",
+     "section": "Video Time: Mei Lanfang: Great Artist, Cultural Ambassador",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 1 PEOPLE OF ACHIEVEMENT",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 LOOKING INTO THE FUTURE",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 2 LOOKING INTO THE FUTURE",
+     "section": "Reading and Thinking: Should We Fight New Technology?",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 LOOKING INTO THE FUTURE",
+     "section": "Discovering Useful Structures: The future progressive tense",
+     "nodes": [
+      "英语::时态::将来进行时的时间视角"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 LOOKING INTO THE FUTURE",
+     "section": "Reading for Writing: An opinion essay about changes caused by technology",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 LOOKING INTO THE FUTURE",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 LOOKING INTO THE FUTURE",
+     "section": "Video Time: Flight of the RoboBee",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 2 LOOKING INTO THE FUTURE",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 FASCINATING PARKS",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 3 FASCINATING PARKS",
+     "section": "Reading and Thinking: Sarek National Park—Europe’s Hidden Natural Treasure",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 FASCINATING PARKS",
+     "section": "Discovering Useful Structures: Subject clauses",
+     "nodes": [
+      "英语::从句::名词性从句的成分作用",
+      "英语::从句::名词性从句的连接与语序"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 FASCINATING PARKS",
+     "section": "Reading for Writing: An introduction to a park",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 FASCINATING PARKS",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 FASCINATING PARKS",
+     "section": "Video Time: BioBlitz: Life in 24 Hours",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 3 FASCINATING PARKS",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 BODY LANGUAGE",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 4 BODY LANGUAGE",
+     "section": "Reading and Thinking: Listening to How Bodies Talk",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 BODY LANGUAGE",
+     "section": "Discovering Useful Structures: The -ing form (4) as the object and the predicative",
+     "nodes": [
+      "英语::非谓语::动名词的句法功能"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 BODY LANGUAGE",
+     "section": "Reading for Writing: A description of body language",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 BODY LANGUAGE",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 BODY LANGUAGE",
+     "section": "Video Time: The Immigrant",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 4 BODY LANGUAGE",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 WORKING THE LAND",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 5 WORKING THE LAND",
+     "section": "Reading and Thinking: A Pioneer for All People",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 WORKING THE LAND",
+     "section": "Discovering Useful Structures: The -ing form (3) as the subject",
+     "nodes": [
+      "英语::非谓语::动名词的句法功能"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 WORKING THE LAND",
+     "section": "Reading for Writing: An argumentative essay on farming",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 WORKING THE LAND",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 WORKING THE LAND",
+     "section": "Video Time: Earth University",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 5 WORKING THE LAND",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Mei Lanfang: Great Artist, Cultural Ambassador",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Flight of the RoboBee",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "BioBlitz: Life in 24 Hours",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Immigrant",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Earth University",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "普通高中教科书·英语选择性必修 第二册",
+   "level": "高中",
+   "rows": [
+    {
+     "chapter": "UNIT 1 SCIENCE AND SCIENTISTS",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE AND SCIENTISTS",
+     "section": "Reading and Thinking: John Snow Defeats “King Cholera”",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE AND SCIENTISTS",
+     "section": "Discovering Useful Structures: Predicative clauses",
+     "nodes": [
+      "英语::从句::名词性从句的成分作用",
+      "英语::从句::名词性从句的连接与语序"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE AND SCIENTISTS",
+     "section": "Reading for Writing: An opinion essay about the scientific spirit",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE AND SCIENTISTS",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE AND SCIENTISTS",
+     "section": "Video Time: International Students in China",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE AND SCIENTISTS",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 BRIDGING CULTURES",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 2 BRIDGING CULTURES",
+     "section": "Reading and Thinking: “Welcome, Xie Lei!” Business Student Building Bridges",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 BRIDGING CULTURES",
+     "section": "Discovering Useful Structures: Review of noun clauses",
+     "nodes": [
+      "英语::从句::名词性从句的成分作用",
+      "英语::从句::名词性从句的连接与语序"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 BRIDGING CULTURES",
+     "section": "Reading for Writing: An argumentative letter about studying abroad",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 BRIDGING CULTURES",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 BRIDGING CULTURES",
+     "section": "Video Time: Why Is It Important to Explore?",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 2 BRIDGING CULTURES",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 FOOD AND CULTURE",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 3 FOOD AND CULTURE",
+     "section": "Reading and Thinking: Culture and Cuisine",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 FOOD AND CULTURE",
+     "section": "Discovering Useful Structures: Review of the -ing form",
+     "nodes": [
+      "英语::非谓语::动名词的句法功能",
+      "英语::非谓语::分词的修饰与状语关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 FOOD AND CULTURE",
+     "section": "Reading for Writing: A descriptive essay about one’s diet",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 FOOD AND CULTURE",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 FOOD AND CULTURE",
+     "section": "Video Time: What Are You Eating in Australia?",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 3 FOOD AND CULTURE",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 JOURNEY ACROSS A VAST LAND",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 4 JOURNEY ACROSS A VAST LAND",
+     "section": "Reading and Thinking: Seeing the True North via Rail: Vancouver and the Heart of Canada",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 JOURNEY ACROSS A VAST LAND",
+     "section": "Discovering Useful Structures: Past participles vs the -ing form",
+     "nodes": [
+      "英语::非谓语::分词的修饰与状语关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 JOURNEY ACROSS A VAST LAND",
+     "section": "Reading for Writing: An email about a journey",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 JOURNEY ACROSS A VAST LAND",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 JOURNEY ACROSS A VAST LAND",
+     "section": "Video Time: Exploring Quebec",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 4 JOURNEY ACROSS A VAST LAND",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 FIRST AID",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 5 FIRST AID",
+     "section": "Reading and Thinking: First Aid for Burns",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 FIRST AID",
+     "section": "Discovering Useful Structures: The past perfect tense",
+     "nodes": [
+      "英语::时态::过去完成时的先后关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 FIRST AID",
+     "section": "Reading for Writing: A narrative essay about providing first aid",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 FIRST AID",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 FIRST AID",
+     "section": "Video Time: Para-Life Rescue",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 5 FIRST AID",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Father of China’s Aerospace; A World of Pure Thought",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "A Canadian Teenager’s Experience in China",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Convenience Food or Fresh Food?",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Xu Xiake’s Guilin",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Is Your Home Safe?",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The past perfect passive voice",
+     "nodes": [
+      "英语::语态::被动语态的形式与焦点",
+      "英语::时态::过去完成时的先后关系"
+     ]
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "普通高中教科书·英语选择性必修 第三册",
+   "level": "高中",
+   "rows": [
+    {
+     "chapter": "UNIT 1 ART",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 1 ART",
+     "section": "Reading and Thinking: A SHORT HISTORY OF WESTERN PAINTING",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 ART",
+     "section": "Discovering Useful Structures: Infinitives (2) as the predicative",
+     "nodes": [
+      "英语::非谓语::不定式的句法功能"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 ART",
+     "section": "Reading for Writing: An announcement for an art exhibition",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 ART",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 1 ART",
+     "section": "Video Time: Qingming Shang He Tu",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 1 ART",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 HEALTHY LIFESTYLE",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 2 HEALTHY LIFESTYLE",
+     "section": "Reading and Thinking: HABITS FOR A HEALTHY LIFESTYLE",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 HEALTHY LIFESTYLE",
+     "section": "Discovering Useful Structures: Infinitives (3) as the subject",
+     "nodes": [
+      "英语::非谓语::不定式的句法功能"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 HEALTHY LIFESTYLE",
+     "section": "Reading for Writing: A letter to the editor",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 HEALTHY LIFESTYLE",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 HEALTHY LIFESTYLE",
+     "section": "Video Time: Did Laughter Evolve to Make Us Healthy?",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 2 HEALTHY LIFESTYLE",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 ENVIRONMENTAL PROTECTION",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 3 ENVIRONMENTAL PROTECTION",
+     "section": "Reading and Thinking: CLIMATE CHANGE REQUIRES THE WORLD’S ATTENTION",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 ENVIRONMENTAL PROTECTION",
+     "section": "Discovering Useful Structures: Review of relative clauses",
+     "nodes": [
+      "英语::从句::定语从句的修饰关系",
+      "英语::从句::定语从句的限制与补充关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 ENVIRONMENTAL PROTECTION",
+     "section": "Reading for Writing: A report on an environmental issue",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 ENVIRONMENTAL PROTECTION",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 ENVIRONMENTAL PROTECTION",
+     "section": "Video Time: Green School in Uruguay",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 3 ENVIRONMENTAL PROTECTION",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 ADVERSITY AND COURAGE",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 4 ADVERSITY AND COURAGE",
+     "section": "Reading and Thinking: A SUCCESSFUL FAILURE",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 ADVERSITY AND COURAGE",
+     "section": "Discovering Useful Structures: The present perfect continuous tense",
+     "nodes": [
+      "英语::时态::现在完成进行时的持续关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 ADVERSITY AND COURAGE",
+     "section": "Reading for Writing: An essay about Shackleton and his men on Endurance",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 ADVERSITY AND COURAGE",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 ADVERSITY AND COURAGE",
+     "section": "Video Time: Antarctic Challenge",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 4 ADVERSITY AND COURAGE",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 POEMS",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 5 POEMS",
+     "section": "Reading and Thinking: A FEW SIMPLE FORMS OF ENGLISH POEMS",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 POEMS",
+     "section": "Discovering Useful Structures: Review of tenses",
+     "nodes": [
+      "英语::时态::一般时态的时间关系",
+      "英语::时态::语篇中的时态呼应"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 POEMS",
+     "section": "Reading for Writing: A poem",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 POEMS",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 POEMS",
+     "section": "Video Time: The Poet Su Shi",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 5 POEMS",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Qingming Shang He Tu",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Did Laughter Evolve to Make Us Healthy?",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Green School in Uruguay",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Antarctic Challenge",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Poet Su Shi",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Direct speech & indirect speech",
+     "nodes": [
+      "英语::句法::直接引语与间接引语的转换"
+     ]
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "普通高中教科书·英语选择性必修 第四册",
+   "level": "高中",
+   "rows": [
+    {
+     "chapter": "UNIT 1 SCIENCE FICTION",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE FICTION",
+     "section": "Reading and Thinking: SATISFACTION GUARANTEED",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE FICTION",
+     "section": "Discovering Useful Structures: Review of the passive voice",
+     "nodes": [
+      "英语::语态::被动语态的形式与焦点"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE FICTION",
+     "section": "Reading for Writing: A sci-fi short story",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE FICTION",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE FICTION",
+     "section": "Video Time: Mysterious Crop Circles",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 1 SCIENCE FICTION",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 ICONIC ATTRACTIONS",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 2 ICONIC ATTRACTIONS",
+     "section": "Reading and Thinking: ICONIC ATTRACTIONS",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 ICONIC ATTRACTIONS",
+     "section": "Discovering Useful Structures: Review of past participles",
+     "nodes": [
+      "英语::非谓语::分词的修饰与状语关系"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 ICONIC ATTRACTIONS",
+     "section": "Reading for Writing: A description of an iconic animal",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 2 ICONIC ATTRACTIONS",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 2 ICONIC ATTRACTIONS",
+     "section": "Video Time: The Mbantua Festival",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 2 ICONIC ATTRACTIONS",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 SEA EXPLORATION",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 3 SEA EXPLORATION",
+     "section": "Reading and Thinking: SEA EXPLORATION",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 SEA EXPLORATION",
+     "section": "Discovering Useful Structures: Review of long sentences",
+     "nodes": [
+      "英语::篇章::长难句的层次分析"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 SEA EXPLORATION",
+     "section": "Reading for Writing: An argumentative essay on sea exploration",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 3 SEA EXPLORATION",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 3 SEA EXPLORATION",
+     "section": "Video Time: Deep into the Sea",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 3 SEA EXPLORATION",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 SHARING",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 4 SHARING",
+     "section": "Reading and Thinking: A LIFE IN THE CLOUDS",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 SHARING",
+     "section": "Discovering Useful Structures: Review of phrases",
+     "nodes": [
+      "英语::词汇::固定搭配的语境选择"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 SHARING",
+     "section": "Reading for Writing: A speech about China’s aid to other countries",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 4 SHARING",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 4 SHARING",
+     "section": "Video Time: Breaking Volunteering Boundaries",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 4 SHARING",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 LAUNCHING YOUR CAREER",
+     "section": "Listening and Speaking",
+     "exempt": "栏目：听说技能，不按节点管理"
+    },
+    {
+     "chapter": "UNIT 5 LAUNCHING YOUR CAREER",
+     "section": "Reading and Thinking: GET A HEAD START ON YOUR FUTURE CAREER",
+     "nodes": [
+      "英语::词汇::语境猜词的线索整合",
+      "英语::篇章::段落主旨与中心句",
+      "英语::篇章::语篇结构与信息组织",
+      "英语::篇章::逻辑关系与衔接词"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 LAUNCHING YOUR CAREER",
+     "section": "Discovering Useful Structures: Review of the infinitive",
+     "nodes": [
+      "英语::非谓语::不定式的句法功能"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 LAUNCHING YOUR CAREER",
+     "section": "Reading for Writing: An application letter and a CV",
+     "nodes": [
+      "英语::写作::句式升级的表达选择",
+      "英语::写作::衔接手段的篇章运用"
+     ]
+    },
+    {
+     "chapter": "UNIT 5 LAUNCHING YOUR CAREER",
+     "section": "Assessing Your Progress",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "UNIT 5 LAUNCHING YOUR CAREER",
+     "section": "Video Time: A Teen’s Passion for His Work",
+     "exempt": "栏目：课文/话题，能力训练载体"
+    },
+    {
+     "chapter": "UNIT 5 LAUNCHING YOUR CAREER",
+     "section": "Project",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Mysterious Crop Circles",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "The Mbantua Festival",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Deep into the Sea",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "Breaking Volunteering Boundaries",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "WORKBOOK",
+     "section": "A Teen’s Passion for His Work",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "义务教育教科书·英语七年级上册",
+   "level": "初中",
+   "rows": [
+    {
+     "chapter": "Starter Unit 1 Good morning!",
+     "section": "Starter Unit 1 Good morning!",
+     "nodes": [
+      "英语::拼读::音标与基础拼读"
+     ]
+    },
+    {
+     "chapter": "Starter Unit 2 What’s this in English?",
+     "section": "Starter Unit 2 What’s this in English?",
+     "nodes": [
+      "英语::拼读::音标与基础拼读",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Starter Unit 3 What color is it?",
+     "section": "Starter Unit 3 What color is it?",
+     "nodes": [
+      "英语::拼读::音标与基础拼读",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 1 My name’s Gina.",
+     "section": "Unit 1 My name’s Gina.",
+     "nodes": [
+      "英语::初中语法::be动词与实义动词",
+      "英语::初中句法::特殊疑问句的语序",
+      "英语::初中词汇::人称、物主与指示代词"
+     ]
+    },
+    {
+     "chapter": "Unit 2 This is my sister.",
+     "section": "Unit 2 This is my sister.",
+     "nodes": [
+      "英语::初中词汇::人称、物主与指示代词",
+      "英语::初中词汇::名词复数、可数性与冠词",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 3 Is this your pencil?",
+     "section": "Unit 3 Is this your pencil?",
+     "nodes": [
+      "英语::初中词汇::人称、物主与指示代词"
+     ]
+    },
+    {
+     "chapter": "Unit 4 Where’s my schoolbag?",
+     "section": "Unit 4 Where’s my schoolbag?",
+     "nodes": [
+      "英语::初中句法::特殊疑问句的语序",
+      "英语::初中词汇::常用介词的关系表达"
+     ]
+    },
+    {
+     "chapter": "Unit 5 Do you have a soccer ball?",
+     "section": "Unit 5 Do you have a soccer ball?",
+     "nodes": [
+      "英语::初中语法::一般现在时的主谓形式",
+      "英语::初中语法::be动词与实义动词"
+     ]
+    },
+    {
+     "chapter": "Unit 6 Do you like bananas?",
+     "section": "Unit 6 Do you like bananas?",
+     "nodes": [
+      "英语::初中语法::一般现在时的主谓形式",
+      "英语::初中词汇::名词复数、可数性与冠词"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "义务教育教科书·英语七年级下册",
+   "level": "初中",
+   "rows": [
+    {
+     "chapter": "Unit 1 Can you play the guitar?",
+     "section": "Unit 1 Can you play the guitar?",
+     "nodes": [
+      "英语::初中语法::情态动词的基本用法"
+     ]
+    },
+    {
+     "chapter": "Unit 2 What time do you go to school?",
+     "section": "Unit 2 What time do you go to school?",
+     "nodes": [
+      "英语::初中语法::一般现在时的主谓形式",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 3 How do you get to school?",
+     "section": "Unit 3 How do you get to school?",
+     "nodes": [
+      "英语::初中语法::一般现在时的主谓形式",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 4 Don’t eat in class.",
+     "section": "Unit 4 Don’t eat in class.",
+     "exempt": "范围：初中非前置骨干内容（设计豁免）"
+    },
+    {
+     "chapter": "Unit 5 Why do you like pandas?",
+     "section": "Unit 5 Why do you like pandas?",
+     "nodes": [
+      "英语::初中语法::一般现在时的主谓形式",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 6 I’m watching TV.",
+     "section": "Unit 6 I’m watching TV.",
+     "nodes": [
+      "英语::初中语法::现在进行时的构成"
+     ]
+    },
+    {
+     "chapter": "Unit 7 It’s raining!",
+     "section": "Unit 7 It’s raining!",
+     "nodes": [
+      "英语::初中语法::现在进行时的构成"
+     ]
+    },
+    {
+     "chapter": "Unit 8 Is there a post office near here?",
+     "section": "Unit 8 Is there a post office near here?",
+     "nodes": [
+      "英语::初中句法::there be结构",
+      "英语::初中词汇::常用介词的关系表达"
+     ]
+    },
+    {
+     "chapter": "Unit 9 What does he look like?",
+     "section": "Unit 9 What does he look like?",
+     "nodes": [
+      "英语::初中语法::be动词与实义动词",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 10 I’d like some noodles.",
+     "section": "Unit 10 I’d like some noodles.",
+     "nodes": [
+      "英语::初中词汇::名词复数、可数性与冠词"
+     ]
+    },
+    {
+     "chapter": "Unit 11 How was your school trip?",
+     "section": "Unit 11 How was your school trip?",
+     "nodes": [
+      "英语::初中语法::一般过去时的动词变化",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 12 What did you do last weekend?",
+     "section": "Unit 12 What did you do last weekend?",
+     "nodes": [
+      "英语::初中语法::一般过去时的动词变化",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes on the Text",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Tapescripts",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Pronunciation",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary Index",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Name List",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "义务教育教科书·英语八年级上册",
+   "level": "初中",
+   "rows": [
+    {
+     "chapter": "Unit 1 Where did you go on vacation?",
+     "section": "Unit 1 Where did you go on vacation?",
+     "nodes": [
+      "英语::初中语法::一般过去时的动词变化",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 2 How often do you exercise?",
+     "section": "Unit 2 How often do you exercise?",
+     "nodes": [
+      "英语::初中语法::一般现在时的主谓形式",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 3 I’m more outgoing than my sister.",
+     "section": "Unit 3 I’m more outgoing than my sister.",
+     "nodes": [
+      "英语::初中语法::形容词与副词的比较级和最高级"
+     ]
+    },
+    {
+     "chapter": "Unit 4 What’s the best movie theater?",
+     "section": "Unit 4 What’s the best movie theater?",
+     "nodes": [
+      "英语::初中语法::形容词与副词的比较级和最高级"
+     ]
+    },
+    {
+     "chapter": "Unit 5 Do you want to watch a game show?",
+     "section": "Unit 5 Do you want to watch a game show?",
+     "nodes": [
+      "英语::初中语法::不定式的常见表达"
+     ]
+    },
+    {
+     "chapter": "Unit 6 I’m going to study computer science.",
+     "section": "Unit 6 I’m going to study computer science.",
+     "nodes": [
+      "英语::初中语法::一般将来时的表达形式",
+      "英语::初中语法::不定式的常见表达"
+     ]
+    },
+    {
+     "chapter": "Unit 7 Will people have robots?",
+     "section": "Unit 7 Will people have robots?",
+     "nodes": [
+      "英语::初中语法::一般将来时的表达形式"
+     ]
+    },
+    {
+     "chapter": "Unit 8 How do you make a banana milk shake?",
+     "section": "Unit 8 How do you make a banana milk shake?",
+     "nodes": [
+      "英语::初中句法::祈使句与感叹句"
+     ]
+    }
+   ]
+  },
+  {
+   "title": "义务教育教科书·英语八年级下册",
+   "level": "初中",
+   "rows": [
+    {
+     "chapter": "Unit 1 What’s the matter?",
+     "section": "Unit 1 What’s the matter?",
+     "nodes": [
+      "英语::初中语法::情态动词的基本用法"
+     ]
+    },
+    {
+     "chapter": "Unit 2 I’ll help to clean up the city parks.",
+     "section": "Unit 2 I’ll help to clean up the city parks.",
+     "nodes": [
+      "英语::初中语法::不定式的常见表达"
+     ]
+    },
+    {
+     "chapter": "Unit 3 Could you please clean your room?",
+     "section": "Unit 3 Could you please clean your room?",
+     "nodes": [
+      "英语::初中语法::情态动词的基本用法"
+     ]
+    },
+    {
+     "chapter": "Unit 4 Why don’t you talk to your parents?",
+     "section": "Unit 4 Why don’t you talk to your parents?",
+     "nodes": [
+      "英语::初中语法::情态动词的基本用法",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 5 What were you doing when the rainstorm came?",
+     "section": "Unit 5 What were you doing when the rainstorm came?",
+     "nodes": [
+      "英语::初中语法::过去进行时的构成"
+     ]
+    },
+    {
+     "chapter": "Unit 6 An old man tried to move the mountains.",
+     "section": "Unit 6 An old man tried to move the mountains.",
+     "nodes": [
+      "英语::初中语法::不定式的常见表达",
+      "英语::初中句法::状语从句的基本逻辑"
+     ]
+    },
+    {
+     "chapter": "Unit 7 What’s the highest mountain in the world?",
+     "section": "Unit 7 What’s the highest mountain in the world?",
+     "nodes": [
+      "英语::初中语法::形容词与副词的比较级和最高级"
+     ]
+    },
+    {
+     "chapter": "Unit 8 Have you read Treasure Island yet?",
+     "section": "Unit 8 Have you read Treasure Island yet?",
+     "nodes": [
+      "英语::初中语法::现在完成时的构成"
+     ]
+    },
+    {
+     "chapter": "Unit 9 Have you ever been to a museum?",
+     "section": "Unit 9 Have you ever been to a museum?",
+     "nodes": [
+      "英语::初中语法::现在完成时的构成"
+     ]
+    },
+    {
+     "chapter": "Unit 10 I’ve had this bike for three years.",
+     "section": "Unit 10 I’ve had this bike for three years.",
+     "nodes": [
+      "英语::初中语法::现在完成时的构成"
+     ]
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Notes on the Text",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Tapescripts",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Grammar",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Words and Expressions in Each Unit",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Vocabulary Index",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    },
+    {
+     "chapter": "APPENDICES",
+     "section": "Irregular Verbs",
+     "exempt": "栏目：非教学主线（Workbook/Project/Assessment）"
+    }
+   ]
+  },
+  {
+   "title": "义务教育教科书·英语九年级全一册",
+   "level": "初中",
+   "rows": [
+    {
+     "chapter": "Unit 1 How can we become good learners?",
+     "section": "Unit 1 How can we become good learners?",
+     "nodes": [
+      "英语::初中语法::动名词的常见表达"
+     ]
+    },
+    {
+     "chapter": "Unit 2 I think that mooncakes are delicious!",
+     "section": "Unit 2 I think that mooncakes are delicious!",
+     "nodes": [
+      "英语::初中句法::宾语从句的连接与语序"
+     ]
+    },
+    {
+     "chapter": "Unit 3 Could you please tell me where the restrooms are?",
+     "section": "Unit 3 Could you please tell me where the restrooms are?",
+     "nodes": [
+      "英语::初中句法::宾语从句的连接与语序",
+      "英语::初中句法::特殊疑问句的语序"
+     ]
+    },
+    {
+     "chapter": "Unit 4 I used to be afraid of the dark.",
+     "section": "Unit 4 I used to be afraid of the dark.",
+     "nodes": [
+      "英语::初中词汇::used to与be used to的辨析"
+     ]
+    },
+    {
+     "chapter": "Unit 5 What are the shirts made of?",
+     "section": "Unit 5 What are the shirts made of?",
+     "nodes": [
+      "英语::初中语法::被动语态的基本转换"
+     ]
+    },
+    {
+     "chapter": "Unit 6 When was it invented?",
+     "section": "Unit 6 When was it invented?",
+     "nodes": [
+      "英语::初中语法::被动语态的基本转换"
+     ]
+    }
+   ]
+  }
+ ]
+}
