@@ -38,12 +38,26 @@ final class Delegate: NSObject, UNUserNotificationCenterDelegate {
   }
 
   func runCommand() {
+    let ghosttyApp = "/Applications/Ghostty.app"
+    let userGhostty = NSHomeDirectory() + "/Applications/Ghostty.app"
+    let useGhostty = FileManager.default.fileExists(atPath: ghosttyApp)
+      || FileManager.default.fileExists(atPath: userGhostty)
+
     let p = Process()
     p.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
-    p.arguments = [
-      "-e", "tell application \"Terminal\" to activate",
-      "-e", "tell application \"Terminal\" to do script \"\(command)\"",
-    ]
+    if useGhostty {
+      // Ghostty 新窗口以登录 shell 跑命令：.zshrc 把 nvm 的 pi 加进 PATH，
+      // pi 退出后 exec zsh -il 留住窗口。AppleScript 字符串以双引号定界，
+      // 命令内的双引号需转义。
+      let escaped = command.replacingOccurrences(of: "\"", with: "\\\"")
+      let script = "tell application \"Ghostty\" to new window with configuration {command:\"zsh -lic '\(escaped); exec zsh -il'\"}"
+      p.arguments = ["-e", script]
+    } else {
+      p.arguments = [
+        "-e", "tell application \"Terminal\" to activate",
+        "-e", "tell application \"Terminal\" to do script \"\(command)\"",
+      ]
+    }
     try? p.run()
     exit(0)
   }
