@@ -34,8 +34,8 @@
 | `prompts/` | `/coach` 开场流程 | 随包版本提交 |
 | `macos/` | 提醒工具链（remind.sh + notifier），部署到 `.pi/macos/` | 随包版本提交 |
 | `templates/` | 标准版种子（知识节点、地图、APPEND_SYSTEM、settings、gitignore、计划） | 随包版本提交 |
-| `scripts/setup.sh` | 安装引导 | 随包版本提交 |
-| `test/` | 逻辑与流程测试（fixture 读 templates/） | 随包版本提交 |
+| `scripts/` | `setup.sh` 安装引导 + `migrate-catalog.mjs` 目录追加迁移 | 随包版本提交 |
+| `test/` | 逻辑、流程、覆盖矩阵与迁移测试（fixture：templates/ + 教材覆盖矩阵） | 随包版本提交 |
 
 ## 外部依赖注入
 
@@ -88,4 +88,5 @@ refactor(catalog): 知识目录路径改可配置，默认读工作目录演化�
 
 - 随时可推 main（消费端不带 @ref 跟随更新）。
 - 锁稳定版：`git tag -a vX.Y.Z -m "..."`，推送 tag。锁版消费端用 `@vX.Y.Z`，升级需显式换 ref。
+- 目录版本升级（扩节点/增别名）发布前：跑全部测试（含覆盖矩阵与迁移测试），然后在已知消费端执行 `scripts/migrate-catalog.mjs` 验证无冲突，再推送。
 - 发布前确认：测试通过、归档图准确、无学员数据入库。
