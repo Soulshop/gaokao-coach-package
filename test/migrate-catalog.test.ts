@@ -16,8 +16,11 @@ function setupCwd(nodes: unknown[], aliases: Record<string, string> = {}) {
   return dir;
 }
 
-function run(dir: string, dry = false) {
-  return spawnSync("node", [SCRIPT, dir, ...(dry ? ["--dry-run"] : [])], { encoding: "utf8" });
+function run(dir: string, dry = false, force = false) {
+  const args = [SCRIPT, dir];
+  if (dry) args.push("--dry-run");
+  if (force) args.push("--force");
+  return spawnSync("node", args, { encoding: "utf8" });
 }
 
 function readCatalog(dir: string) {
@@ -103,5 +106,44 @@ test("迁移：dry-run 不修改任何文件", () => {
   assert.match(res.stdout, /dry-run/);
   assert.deepEqual(readCatalog(dir), before, "dry-run 不改文件");
   assert.equal(backups(dir).length, 0, "dry-run 不写备份");
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test("迁移：dry-run 遇冲突也不写备份", () => {
+  const evolved = structuredClone(TEMPLATE_RAW.nodes[0]);
+  evolved.successCriteria.push("本地新增");
+  const dir = setupCwd([evolved]);
+  const before = readCatalog(dir);
+  const res = run(dir, true);
+  assert.equal(res.status, 1, "dry-run 冲突返回非零");
+  assert.deepEqual(readCatalog(dir), before, "dry-run 冲突不改文件");
+  assert.equal(backups(dir).length, 0, "dry-run 冲突不写备份");
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test("迁移：--force 以模板覆盖同 ID 节点", () => {
+  const evolved = structuredClone(TEMPLATE_RAW.nodes[0]);
+  evolved.successCriteria.push("本地新增的通过标准");
+  const dir = setupCwd([evolved]);
+  const res = run(dir, false, true);
+  assert.equal(res.status, 0, res.stdout + res.stderr);
+  const cat = readCatalog(dir);
+  const t0 = TEMPLATE_RAW.nodes.find((n: { id: string }) => n.id === evolved.id);
+  assert.deepEqual(
+    cat.nodes.find((n: { id: string }) => n.id === evolved.id),
+    t0,
+    "--force 后同 ID 节点以模板内容为准",
+  );
+  assert.equal(backups(dir).length, 1, "--force 也写备份");
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test("迁移：消费端自带的悬空别名被拒绝而不是静默清除", () => {
+  const dir = setupCwd(structuredClone(TEMPLATE_RAW.nodes).slice(0, 1), { "本地::旧名": "本地::不存在的目标" });
+  const before = readCatalog(dir);
+  const res = run(dir);
+  assert.equal(res.status, 1, "悬空别名触发冲突退出");
+  assert.match(res.stdout + res.stderr, /consumer-alias/);
+  assert.deepEqual(readCatalog(dir), before, "悬空别名时不改文件");
   rmSync(dir, { recursive: true, force: true });
 });

@@ -75,17 +75,17 @@ function deepEqual(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
-function plan(target, template) {
+function plan(target, template, force = false) {
   const tById = new Map(template.nodes.map((n) => [n.id, n]));
   const cById = new Map(target.nodes.map((n) => [n.id, n]));
   const additions = [];
   const conflicts = [];
   for (const t of template.nodes) {
     if (!cById.has(t.id)) additions.push(t);
-    else if (!deepEqual(cById.get(t.id), t)) conflicts.push(t.id);
+    else if (!deepEqual(cById.get(t.id), t) && !force) conflicts.push(t.id);
   }
-  // aliases 处理: 旧 ID 节点在消费端存在时, 若内容与模板目标一致则迁移(删旧留新),
-  // 不一致则记为冲突。模板目标节点本身必在 additions 中被追加。
+  // aliases 处理: 旧 ID 节点在消费端存在时, 内容与模板目标一致则迁移(删旧留新),
+  // 不一致记为冲突。模板目标节点本身必在 additions 中被追加。
   const renames = [];
   const aliasAdds = [];
   const norm = (n, newId) => ({ ...n, id: newId, module: newId.split("::")[1] });
@@ -96,14 +96,24 @@ function plan(target, template) {
       const oldNode = cById.get(oldId);
       if (!cById.has(newId)) {
         if (deepEqual(norm(oldNode, newId), norm(tgt, newId))) renames.push({ oldId, newId });
+        else if (force) renames.push({ oldId, newId });
         else conflicts.push(`alias:${oldId}`);
       } else {
         if (deepEqual(norm(oldNode, newId), cById.get(newId))) renames.push({ oldId, newId });
+        else if (force) renames.push({ oldId, newId });
         else conflicts.push(`alias:${oldId}`);
       }
     }
     if (oldId in (target.aliases ?? {})) continue;
     aliasAdds.push([oldId, newId]);
+  }
+  // 消费端自带 aliases 净化: 目标必须存在于合并后目录; 否则视为冲突
+  const known = new Set([...tById.keys()].filter((k) => !conflicts.includes(k)));
+  for (const n of additions) known.add(n.id);
+  for (const n of target.nodes) known.add(n.id);
+  for (const [oldId, newId] of Object.entries(target.aliases ?? {})) {
+    if (oldId in (template.aliases ?? {})) continue; // 模板为准
+    if (!known.has(newId)) conflicts.push(`consumer-alias:${oldId}->${newId}`);
   }
   return { additions, conflicts, renames, aliasAdds, tById };
 }
@@ -119,15 +129,30 @@ function apply(target, template, p) {
   for (const n of target.nodes) {
     n.prerequisites = n.prerequisites.map((pr) => p.tById.get(pr) ? pr : (template.aliases[pr] ?? pr));
   }
+  // 消费端自带 aliases 净化: 仅保留目标存在的条目（模板键已被模板覆盖）
+  const validTargets = new Set(target.nodes.map((n) => n.id));
+  for (const [oldId, newId] of Object.entries(target.aliases ?? {})) {
+    if (!validTargets.has(newId)) delete target.aliases[oldId];
+  }
   target.version = Math.max(target.version ?? 1, template.version);
+}
+
+function applyForce(target, template, p) {
+  // --force: 同 ID 内容以模板为准覆盖
+  const tById = new Map(template.nodes.map((n) => [n.id, n]));
+  target.nodes = target.nodes
+    .map((n) => (tById.has(n.id) ? structuredClone(tById.get(n.id)) : n))
+    .concat(p.additions.map((n) => structuredClone(n)));
+  apply(target, template, { ...p, additions: [] });
 }
 
 function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes("--dry-run");
-  const cwdArg = dryRun ? args.find((a) => a !== "--dry-run") : args[0];
+  const force = args.includes("--force");
+  const cwdArg = (dryRun ? args.filter((a) => a !== "--dry-run") : args).filter((a) => a !== "--force")[0];
   if (!cwdArg) {
-    console.error("用法: node scripts/migrate-catalog.mjs <消费端目录> [--dry-run]");
+    console.error("用法: node scripts/migrate-catalog.mjs <消费端目录> [--dry-run] [--force]");
     process.exit(2);
   }
   const cwd = resolve(cwdArg);
@@ -138,9 +163,13 @@ function main() {
   }
   const template = validate(readJson(TEMPLATE), "模板");
   const target = validate(readJson(targetPath), "消费端");
-  const p = plan(target, template);
+  const p = plan(target, template, force);
   if (p.conflicts.length) {
     for (const id of p.conflicts) console.error(`冲突: ${id} 在模板与消费端内容不一致`);
+    if (dryRun) {
+      console.error("（dry-run 不写备份、不改文件。加 --force 可用模板覆盖同 ID 节点。）");
+      process.exit(1);
+    }
     const backup = `${targetPath}.bak-${nowStamp()}`;
     writeFileSync(backup, JSON.stringify(target, null, 2));
     console.error(`已写备份: ${backup}`);
@@ -158,7 +187,8 @@ function main() {
   }
   const backup = `${targetPath}.bak-${nowStamp()}`;
   writeFileSync(backup, JSON.stringify(target, null, 2));
-  apply(target, template, p);
+  if (force) applyForce(target, template, p);
+  else apply(target, template, p);
   // 原子写
   const tmp = `${targetPath}.tmp`;
   writeFileSync(tmp, JSON.stringify(target, null, 2) + "\n");
