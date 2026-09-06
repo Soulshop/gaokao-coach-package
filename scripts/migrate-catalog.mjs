@@ -68,6 +68,12 @@ function validate(catalog, origin) {
   }
   for (const n of catalog.nodes) if (!color.has(n.id)) dfs(n.id);
   if (cycle.length) throw new Error(`${origin}: 存在循环依赖 ${cycle[0].join(" -> ")}`);
+  // aliases 校验: 键不得与正式节点冲突, 目标必须存在, 禁止自环
+  for (const [oldId, newId] of Object.entries(catalog.aliases ?? {})) {
+    if (ids.has(oldId)) throw new Error(`${origin}: 别名与正式 ID 冲突 ${oldId}`);
+    if (!ids.has(newId)) throw new Error(`${origin}: 别名目标不存在 ${oldId} -> ${newId}`);
+    if (oldId === newId) throw new Error(`${origin}: 别名自环 ${oldId}`);
+  }
   return catalog;
 }
 

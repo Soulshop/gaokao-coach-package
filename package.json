@@ -1,6 +1,6 @@
 {
   "name": "gaokao-coach-package",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "广东高考学习教员教学系统分发包：苏格拉底式教学法、coach 扩展、评分审计链路、规范知识目录与 macos 提醒工具链。",
   "keywords": [
     "pi-package",

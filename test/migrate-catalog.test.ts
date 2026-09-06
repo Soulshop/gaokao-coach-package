@@ -142,8 +142,9 @@ test("迁移：消费端自带的悬空别名被拒绝而不是静默清除", ()
   const dir = setupCwd(structuredClone(TEMPLATE_RAW.nodes).slice(0, 1), { "本地::旧名": "本地::不存在的目标" });
   const before = readCatalog(dir);
   const res = run(dir);
-  assert.equal(res.status, 1, "悬空别名触发冲突退出");
-  assert.match(res.stdout + res.stderr, /consumer-alias/);
+  assert.equal(res.status, 1, "悬空别名触发非零退出");
+  assert.match(res.stdout + res.stderr, /别名目标不存在|consumer-alias/, "拒绝原因应明确");
   assert.deepEqual(readCatalog(dir), before, "悬空别名时不改文件");
+  assert.equal(backups(dir).length, 0, "加载校验拒绝时不写备份");
   rmSync(dir, { recursive: true, force: true });
 });
