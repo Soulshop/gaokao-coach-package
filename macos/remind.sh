@@ -26,7 +26,7 @@ fi
 DUE="$("$NODE" -e "
 const p = require('$PROFILE');
 const now = Date.now();
-const due = Object.values(p.knowledge || {}).filter(k => k.nextReview && new Date(k.nextReview) <= now);
+const due = Object.values(p.knowledge || {}).filter(k => !k.catalogMissing && k.nextReview && new Date(k.nextReview) <= now);
 const names = due.slice(0, 3).map(k => k.name);
 console.log(names.length ? names.join('、') : '');
 " 2>/dev/null || true)"
