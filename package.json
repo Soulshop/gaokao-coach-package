@@ -1,13 +1,20 @@
 {
   "name": "gaokao-coach-package",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "广东高考学习教员教学系统分发包：苏格拉底式教学法、coach 扩展、评分审计链路、规范知识目录与 macos 提醒工具链。",
-  "keywords": ["pi-package", "gaokao", "socratic", "education"],
+  "keywords": [
+    "pi-package",
+    "gaokao",
+    "socratic",
+    "education"
+  ],
   "license": "MIT",
   "dependencies": {
     "@mjakl/pi-subagent": "^3.0.1"
   },
-  "bundledDependencies": ["@mjakl/pi-subagent"],
+  "bundledDependencies": [
+    "@mjakl/pi-subagent"
+  ],
   "peerDependencies": {
     "@earendil-works/pi-ai": "*",
     "@earendil-works/pi-agent-core": "*",
@@ -16,15 +23,32 @@
     "typebox": "*"
   },
   "peerDependenciesMeta": {
-    "@earendil-works/pi-ai": { "optional": true },
-    "@earendil-works/pi-agent-core": { "optional": true },
-    "@earendil-works/pi-coding-agent": { "optional": true },
-    "@earendil-works/pi-tui": { "optional": true },
-    "typebox": { "optional": true }
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-agent-core": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    },
+    "typebox": {
+      "optional": true
+    }
   },
   "pi": {
-    "extensions": ["./extensions", "./node_modules/@mjakl/pi-subagent/index.ts"],
-    "skills": ["./skills"],
-    "prompts": ["./prompts"]
+    "extensions": [
+      "./extensions",
+      "./node_modules/@mjakl/pi-subagent/index.ts"
+    ],
+    "skills": [
+      "./skills"
+    ],
+    "prompts": [
+      "./prompts"
+    ]
   }
 }
