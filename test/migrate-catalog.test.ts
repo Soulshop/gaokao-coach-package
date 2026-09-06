@@ -148,3 +148,72 @@ test("迁移：消费端自带的悬空别名被拒绝而不是静默清除", ()
   assert.equal(backups(dir).length, 0, "加载校验拒绝时不写备份");
   rmSync(dir, { recursive: true, force: true });
 });
+
+test("迁移：successCriteria 含非字符串元素被加载校验拒绝", () => {
+  const bad = structuredClone(TEMPLATE_RAW.nodes[0]);
+  bad.successCriteria.push(1 as never);
+  const dir = setupCwd([bad]);
+  const before = readCatalog(dir);
+  const res = run(dir);
+  assert.equal(res.status, 1, "非法 successCriteria 触发非零退出");
+  assert.match(res.stdout + res.stderr, /successCriteria 必须是非空字符串数组/);
+  assert.deepEqual(readCatalog(dir), before, "不改文件");
+  assert.equal(backups(dir).length, 0, "不写备份");
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test("迁移：空别名键与空目标被加载校验拒绝", () => {
+  const ok = structuredClone(TEMPLATE_RAW.nodes[0]);
+  const dirA = setupCwd([ok], { "": "数学::初高衔接::有理数运算" });
+  const resA = run(dirA);
+  assert.equal(resA.status, 1, "空别名键被拒绝");
+  assert.match(resA.stdout + resA.stderr, /别名校必须是非空字符串/);
+  assert.equal(backups(dirA).length, 0, "不写备份");
+  rmSync(dirA, { recursive: true, force: true });
+  const dirB = setupCwd([ok], { "本地::旧名": "" });
+  const resB = run(dirB);
+  assert.equal(resB.status, 1, "空别名目标被拒绝");
+  assert.match(resB.stdout + resB.stderr, /别名目标必须是非空字符串/);
+  rmSync(dirB, { recursive: true, force: true });
+});
+
+test("迁移：本地别名指向被改名移除的旧 ID 时重定向而不是删除", () => {
+  const oldId = "历史::中国史::古代史阶段联系";
+  const newId = (TEMPLATE_RAW.aliases ?? {})[oldId];
+  assert.ok(newId, "模板应含该别名");
+  const tgt = TEMPLATE_RAW.nodes.find((n: { id: string }) => n.id === newId);
+  const anchor = TEMPLATE_RAW.nodes.find((n: { id: string }) => n.id === "历史::方法::时空定位");
+  const oldNode = { ...structuredClone(tgt), id: oldId, module: "中国史" };
+  const dir = setupCwd([oldNode, structuredClone(anchor)], { "本地::快捷方式": oldId });
+  const res = run(dir);
+  assert.equal(res.status, 0, res.stdout + res.stderr);
+  const cat = readCatalog(dir);
+  assert.equal(cat.aliases["本地::快捷方式"], newId, "本地别名被重定向到新 ID，而不是被删除");
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test("迁移：--force 覆盖同 ID 且保留模板外本地专有节点", () => {
+  const evolved = structuredClone(TEMPLATE_RAW.nodes[0]);
+  evolved.successCriteria.push("本地新增的通过标准");
+  const localExtra = {
+    id: "语文::整本书阅读::本地专有节点",
+    subject: "语文",
+    module: "整本书阅读",
+    name: "本地专有节点",
+    prerequisites: [],
+    successCriteria: ["能本地记录并复习","能保持本地演化"],
+  };
+  const dir = setupCwd([evolved, localExtra]);
+  const res = run(dir, false, true);
+  assert.equal(res.status, 0, res.stdout + res.stderr);
+  const cat = readCatalog(dir);
+  const t0 = TEMPLATE_RAW.nodes.find((n: { id: string }) => n.id === evolved.id);
+  assert.deepEqual(
+    cat.nodes.find((n: { id: string }) => n.id === evolved.id),
+    t0,
+    "--force 后同 ID 节点以模板内容为准",
+  );
+  assert.ok(cat.nodes.some((n: { id: string }) => n.id === localExtra.id), "模板外本地专有节点保留");
+  assert.equal(backups(dir).length, 1, "--force 也写备份");
+  rmSync(dir, { recursive: true, force: true });
+});

@@ -47,6 +47,9 @@ function validate(catalog, origin) {
     ids.add(n.id);
     if (!Array.isArray(n.prerequisites)) throw new Error(`${origin}: ${n.id} prerequisites 必须是数组`);
     if (!Array.isArray(n.successCriteria) || n.successCriteria.length === 0) throw new Error(`${origin}: ${n.id} successCriteria 必须非空`);
+    if (n.successCriteria.some((c) => typeof c !== "string" || !c.trim())) {
+      throw new Error(`${origin}: ${n.id} successCriteria 必须是非空字符串数组`);
+    }
     for (const p of n.prerequisites) {
       if (!ids.has(p) && !catalog.nodes.some((x) => x.id === p)) throw new Error(`${origin}: ${n.id} 前置引用不存在 ${p}`);
     }
@@ -68,8 +71,10 @@ function validate(catalog, origin) {
   }
   for (const n of catalog.nodes) if (!color.has(n.id)) dfs(n.id);
   if (cycle.length) throw new Error(`${origin}: 存在循环依赖 ${cycle[0].join(" -> ")}`);
-  // aliases 校验: 键不得与正式节点冲突, 目标必须存在, 禁止自环
+  // aliases 校验: 键与目标必须是非空字符串, 键不得与正式节点冲突, 目标必须存在, 禁止自环
   for (const [oldId, newId] of Object.entries(catalog.aliases ?? {})) {
+    if (!oldId || !oldId.trim()) throw new Error(`${origin}: 别名校必须是非空字符串`);
+    if (typeof newId !== "string" || !newId.trim()) throw new Error(`${origin}: 别名目标必须是非空字符串 ${oldId}`);
     if (ids.has(oldId)) throw new Error(`${origin}: 别名与正式 ID 冲突 ${oldId}`);
     if (!ids.has(newId)) throw new Error(`${origin}: 别名目标不存在 ${oldId} -> ${newId}`);
     if (oldId === newId) throw new Error(`${origin}: 别名自环 ${oldId}`);
@@ -113,15 +118,22 @@ function plan(target, template, force = false) {
     if (oldId in (target.aliases ?? {})) continue;
     aliasAdds.push([oldId, newId]);
   }
-  // 消费端自带 aliases 净化: 目标必须存在于合并后目录; 否则视为冲突
-  const known = new Set([...tById.keys()].filter((k) => !conflicts.includes(k)));
-  for (const n of additions) known.add(n.id);
-  for (const n of target.nodes) known.add(n.id);
+  // 消费端自带 aliases: 目标在迁移后仍存在则保留; 目标是模板别名旧 ID 则重定向; 其余不可解析视为冲突
+  const renamedIds = new Set(renames.map((r) => r.oldId));
+  const survived = [...target.nodes.map((n) => n.id), ...additions.map((n) => n.id)].filter((id) => !renamedIds.has(id));
+  const validDest = new Set([...survived, ...renames.map((r) => r.newId)]);
+  const aliasRemaps = [];
   for (const [oldId, newId] of Object.entries(target.aliases ?? {})) {
-    if (oldId in (template.aliases ?? {})) continue; // 模板为准
-    if (!known.has(newId)) conflicts.push(`consumer-alias:${oldId}->${newId}`);
+    if (oldId in (template.aliases ?? {})) continue; // 模板键为准
+    if (validDest.has(newId)) continue; // 迁移后目标仍有效，保留
+    const redirect = template.aliases?.[newId];
+    if (redirect) {
+      aliasRemaps.push({ oldId, from: newId, to: redirect });
+      continue;
+    }
+    conflicts.push(`consumer-alias:${oldId}->${newId}`);
   }
-  return { additions, conflicts, renames, aliasAdds, tById };
+  return { additions, conflicts, renames, aliasAdds, remaps: aliasRemaps, tById };
 }
 
 function apply(target, template, p) {
@@ -129,22 +141,21 @@ function apply(target, template, p) {
   for (const r of p.renames) {
     const idx = target.nodes.findIndex((n) => n.id === r.oldId);
     if (idx >= 0) target.nodes.splice(idx, 1); // 旧节点删除, 以模板目标副本为准
-    target.aliases = { ...(target.aliases ?? {}), [r.oldId]: r.newId };
   }
   for (const [oldId, newId] of p.aliasAdds) target.aliases = { ...(target.aliases ?? {}), [oldId]: newId };
+  for (const r of p.remaps) {
+    // 消费端别名指向被改名移除的旧 ID: 重定向到模板别名目标, 不删除
+    if ((target.aliases ?? {})[r.oldId] !== r.from) continue;
+    target.aliases = { ...(target.aliases ?? {}), [r.oldId]: r.to };
+  }
   for (const n of target.nodes) {
     n.prerequisites = n.prerequisites.map((pr) => p.tById.get(pr) ? pr : (template.aliases[pr] ?? pr));
-  }
-  // 消费端自带 aliases 净化: 仅保留目标存在的条目（模板键已被模板覆盖）
-  const validTargets = new Set(target.nodes.map((n) => n.id));
-  for (const [oldId, newId] of Object.entries(target.aliases ?? {})) {
-    if (!validTargets.has(newId)) delete target.aliases[oldId];
   }
   target.version = Math.max(target.version ?? 1, template.version);
 }
 
 function applyForce(target, template, p) {
-  // --force: 同 ID 内容以模板为准覆盖
+  // --force: 同 ID 内容以模板为准覆盖, 模板外本地专有节点保留
   const tById = new Map(template.nodes.map((n) => [n.id, n]));
   target.nodes = target.nodes
     .map((n) => (tById.has(n.id) ? structuredClone(tById.get(n.id)) : n))
