@@ -115,3 +115,13 @@ test("覆盖矩阵：目录节点全部被引用或登记豁免", () => {
     assert.ok(catalog.nodes.some((n) => n.id === nid), `coverage-extra-nodes.json 引用了不存在的节点 ${nid}`);
   }
 });
+
+test("覆盖矩阵：初中英语九年级全一册必须覆盖全部 14 个单元", () => {
+  const mat = readJson(join(coverageDir, "矩阵-英语.json")) as {
+    books: { title: string; rows: { section: string }[] }[];
+  };
+  const book = mat.books.find((b) => b.title.includes("九年级全一册"));
+  assert.ok(book, "矩阵缺少 九年级全一册");
+  const units = book.rows.map((r) => r.section).filter((s) => /^Unit \d+/.test(s));
+  assert.equal(units.length, 14, `九年级全一册应覆盖 14 个单元，当前 ${units.length}：${units.join(", ")}`);
+});
