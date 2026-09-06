@@ -39,6 +39,7 @@ bash scripts/setup.sh /path/to/学员工作目录
 | `templates/agents/` | 子代理定义（grading-auditor 评分复评员） | 随包版本，部署到 `.pi/agents/`，随包覆盖 |
 | `AGENTS.md` | 开发规则（唯一参考事实、先图后实现） | 随包版本，仅开发加载，不进学员会话 |
 | `scripts/setup.sh` | 安装引导 | 随包版本 |
+| `docs/architecture.md` | 两张架构图（教学法、系统），唯一参考事实 | 随包版本 |
 
 ## 外部依赖注入
 
@@ -74,7 +75,7 @@ bash scripts/setup.sh /path/to/学员工作目录
 node --experimental-strip-types --test test/logic.test.ts test/extension-flow.test.mjs
 ```
 
-更改规则或代码时，同步更新工作仓库 `.pi/README.md` 的两张架构图（教学法架构、系统架构），二者是项目唯一参考事实。修改教学法先改图再实现；新增文件/工具/链路先改系统架构图再实现。
+更改规则或代码时，先更新 `docs/architecture.md` 的对应架构图（教学法、系统）再改实现，二者是项目唯一参考事实。修改教学法先改图再实现；新增文件/工具/链路先改系统架构图再实现。
 
 ## 版本策略
 

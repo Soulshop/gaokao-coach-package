@@ -12,8 +12,9 @@
 
 ## 唯一参考事实
 
-- 消费端工作仓库（`~/gaokao-coach`）的 `.pi/README.md`「架构总览」一节包含两张图：**教学法架构图**与**系统架构图**。它们是本项目设计的唯一参考事实。
+- 本仓库 `docs/architecture.md` 包含两张图：**教学法架构图**与**系统架构图**。它们是本项目设计的唯一参考事实。
 - 开始任何改动前先读取这两张图。
+- 消费端工作目录（`~/gaokao-coach`）不承载架构图；其 `.pi/README.md` 只是教学使用说明。
 
 ## 开发顺序
 
@@ -36,6 +37,7 @@
 | `templates/` | 标准版种子（知识节点、地图、APPEND_SYSTEM、settings、gitignore、计划） | 随包版本提交 |
 | `scripts/` | `setup.sh` 安装引导 + `migrate-catalog.mjs` 目录追加迁移 | 随包版本提交 |
 | `test/` | 逻辑、流程、覆盖矩阵与迁移测试（fixture：templates/ + 教材覆盖矩阵） | 随包版本提交 |
+| `docs/architecture.md` | 两张架构图（唯一参考事实，先图后实现） | 随包版本提交 |
 
 ## 外部依赖注入
 
@@ -54,13 +56,24 @@
 - `templates/settings.json` 只含 packages 引用。
 - setup.sh 三层语义：数据/演化件只首次复制；配置件首次复制不自动覆盖；规则/工具件（APPEND_SYSTEM、templates/agents、macos）随包更新覆盖。gitignore 属演化件不覆盖，但对必须由包保证的忽略行（如 `.pi/state/`），setup.sh 只做缺失追加，不改动已有行。
 
+## 目录规范
+
+- 不直接改名已使用的知识 ID。必须替换时，在 `templates/知识节点.json` 登记 `aliases`，用 `scripts/migrate-catalog.mjs` 迁移消费端演化版（幂等、冲突失败、自动备份）。
+- 新知识节点必须包含直接前置边与可观察通过标准。
+- 改目录结构（新增/删除节点）时校验 `templates/知识节点.json`（ID、前置边、无环）。
+
+## 写文件安全
+
+- 自定义工具对被编辑文件做读改写时，用 `withFileMutationQueue()` 包住整个读写窗口（pi 扩展 API，防并行工具互踩）。
+- 扩展自管文件（profile.json、审计日志、学习计划.md）用临时文件 + `renameSync` 原子写，或只追加；绝不直接覆盖目标文件。
+
 ## 测试
 
 ```bash
 node --experimental-strip-types --test test/logic.test.ts test/extension-flow.test.mjs test/reminder.test.ts
 ```
 
-改任何逻辑后必须跑测试。改目录结构（新增/删除节点）时校验 `templates/知识节点.json`（ID、前置边、无环）。
+改任何逻辑后必须跑测试。
 
 ## 提交规范
 
