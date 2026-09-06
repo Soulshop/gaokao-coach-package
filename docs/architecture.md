@@ -74,14 +74,14 @@ flowchart TB
 
     subgraph PKG[分发包 gaokao-coach-package<br>GitHub 公开仓库]
         PKG_SRC[extensions/ skills/ prompts/<br>macos/ templates/ scripts/ test/<br>docs/architecture.md AGENTS.md<br>开发规则与图 不进学员会话]
-        PKG_DEP[package.json dependencies<br>@mjakl/pi-subagent 子代理运行时]
+        PKG_DEP[package.json dependencies<br>&#64;mjakl/pi-subagent 子代理运行时]
     end
 
     subgraph INSTALL[安装与更新]
         SETUP[scripts/setup.sh<br>首次复制种子 不覆盖演化数据<br>规则件随包覆盖部署]
         MIGRATE[scripts/migrate-catalog.mjs<br>目录追加迁移 幂等 冲突失败 自动备份]
         CLONE[.pi/git/github.com/Soulshop/<br>gaokao-coach-package 自动 clone<br>clone 后自动 npm install]
-        NMOD[node_modules/@mjakl/pi-subagent<br>随包注入的子代理扩展]
+        NMOD[node_modules/&#64;mjakl/pi-subagent<br>随包注入的子代理扩展]
     end
 
     subgraph PI[教学系统 .pi 常驻于系统提示与技能]
@@ -107,7 +107,7 @@ flowchart TB
     end
 
     subgraph ROOT[学员工作目录]
-        PROFILE[(.pi/state/profile.json<br>唯一结构化状态<br>reminder{enabled,time})]
+        PROFILE[(".pi/state/profile.json<br>唯一结构化状态<br>reminder{enabled,time}")]
         AUDITLOG[(.pi/state/grading-audit.jsonl<br>评分审计日志 只追加)]
         AGENTMD[.pi/agents/grading-auditor.md<br>复评员定义 随包覆盖]
         NODE[(学习资料/知识节点.json<br>规范知识与前置边 演化版)]
