@@ -68,6 +68,12 @@ bash scripts/setup.sh /path/to/学员工作目录
 - **开发规则**在 `AGENTS.md`。它是仓库开发上下文，开发时由 pi 加载，学员会话不加载。
 - 职责分离：触达学员的提示文件与仓库开发约定不再混放。
 
+## 独立 Web 插件
+
+Web 交互插件的目录骨架位于并列项目 [`~/gaokao-coach-web/`](../gaokao-coach-web/README.md)。当前没有 UI、服务或部署实现，也未加入本包的加载清单。
+
+Web 只负责交互，教学规则与状态继续由本包管理。本包 `docs/architecture.md` 的系统架构图只保留一个 Web 外部入口。Web 内部架构独立维护在 [`gaokao-coach-web/docs/architecture.md`](../gaokao-coach-web/docs/architecture.md)。
+
 ## 开发
 
 ```bash

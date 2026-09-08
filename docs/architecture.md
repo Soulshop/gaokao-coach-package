@@ -70,7 +70,11 @@ flowchart TB
 
 ## 图二：系统架构
 
-这张图描述文件、进程与数据流。它不描述教学法。图中路径均为本仓库（分发包）内路径；部署到学员工作目录后经 `.pi/git/` 自动 clone 加载，或经 `scripts/setup.sh` 复制到 `.pi/` 下。
+这张图描述文件、进程与数据流。它不描述教学法。分发包源文件路径相对本仓库。部署后的 `.pi/` 路径相对学员工作目录。消费端经 `.pi/git/` 加载分发包，或经 `scripts/setup.sh` 复制规则与种子。
+
+本图只保留独立 Web 插件的外部入口。Web 内部架构由 [`gaokao-coach-web/docs/architecture.md`](../../gaokao-coach-web/docs/architecture.md) 独立维护，不在本包展开。教学规则与状态仍由本包管理。
+
+Web 当前只有目录骨架。标注“规划”的虚线表示尚未实现的接入边界。
 
 ```mermaid
 flowchart TB
@@ -109,6 +113,8 @@ flowchart TB
         SKILL -->|盲评复评 不携带执教判定| SUB
     end
 
+    WEB[gaokao-coach-web<br>外部 Web 交互入口 规划 尚不可运行]
+
     subgraph REM[提醒扩展 独立于教学]
         REMEXT[extensions/reminder/index.ts<br>reminder_get/set/test]
         REMEXT --> REMIND[reminder.ts 渲染 plist + launchctl load/unload]
@@ -138,4 +144,5 @@ flowchart TB
     REMIND -->|reminder_set 写 plist + launchctl load| L
     PROFILE -->|renderStudyPlan 生成| LM
     RSH -->|读取| PROFILE
+    WEB -.->|规划 通过 pi 接入并复用教学系统| PI
 ```
