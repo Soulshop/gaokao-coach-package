@@ -74,7 +74,7 @@ flowchart TB
 
 本图只保留独立 Web 插件的外部入口。Web 内部架构由 [`gaokao-coach-web/docs/architecture.md`](../../gaokao-coach-web/docs/architecture.md) 独立维护，不在本包展开。教学规则与状态仍由本包管理。
 
-Web 当前只有目录骨架。标注“规划”的虚线表示尚未实现的接入边界。
+Web 已实现单学员教学会话入口、工作区文件浏览和单文件下载。标注“规划”的虚线表示尚未实现的接入边界。
 
 ```mermaid
 flowchart TB
@@ -113,7 +113,7 @@ flowchart TB
         SKILL -->|盲评复评 不携带执教判定| SUB
     end
 
-    WEB[gaokao-coach-web<br>外部 Web 交互入口 规划 尚不可运行]
+    WEB[gaokao-coach-web<br>外部 Web 交互入口<br>教学会话已实现<br>工作区文件浏览与单文件下载已实现]
 
     subgraph REM[提醒扩展 独立于教学]
         REMEXT[extensions/reminder/index.ts<br>reminder_get/set/test]
@@ -144,5 +144,6 @@ flowchart TB
     REMIND -->|reminder_set 写 plist + launchctl load| L
     PROFILE -->|renderStudyPlan 生成| LM
     RSH -->|读取| PROFILE
-    WEB -.->|规划 通过 pi 接入并复用教学系统| PI
+    WEB -->|通过 pi 接入并复用教学系统| PI
+    WEB -->|服务端只读公开学习文件<br>排除隐藏项 链接文件与内部状态| ROOT
 ```
