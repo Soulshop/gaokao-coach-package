@@ -529,6 +529,75 @@ test("复习计分必须携带本任务的复评审计编号", async () => {
   }
 });
 
+test("coach_search_knowledge 返回规范 ID 且未初始化即可查", async () => {
+  const harness = createHarness("数学::函数::输入对应输出");
+  try {
+    // 未初始化即可查询（不读 profile）
+    const byKeyword = await harness.run("coach_search_knowledge", { keyword: "集合" });
+    const ids = byKeyword.details.nodes.map((n) => n.id);
+    assert.ok(ids.includes("数学::集合与逻辑::集合的概念与表示"));
+    assert.ok(ids.includes("数学::集合与逻辑::集合的关系与运算"));
+    assert.equal(byKeyword.details.total, 4);
+    assert.equal(byKeyword.details.returned, 4);
+    // 精简字段，不含 prerequisites / successCriteria
+    const slim = byKeyword.details.nodes[0];
+    assert.deepEqual(Object.keys(slim).sort(), ["id", "module", "name", "subject"]);
+    const payload = JSON.parse(byKeyword.content[0].text);
+    assert.ok(payload.subjects.includes("数学"));
+
+    const byModule = await harness.run("coach_search_knowledge", {
+      subject: "数学",
+      module: "集合与逻辑",
+    });
+    assert.equal(byModule.details.total, 4);
+
+    const none = await harness.run("coach_search_knowledge", { keyword: "不存在的关键词XYZ" });
+    assert.equal(none.details.total, 0);
+    assert.equal(none.details.nodes.length, 0);
+
+    const all = await harness.run("coach_search_knowledge", { limit: 10 });
+    assert.equal(all.details.returned, 10);
+    assert.equal(all.details.total, 575);
+  } finally {
+    harness.cleanup();
+  }
+});
+
+test("搜索到规范 ID 后 coach_complete_init 成功", async () => {
+  const harness = createHarness("数学::函数::输入对应输出");
+  try {
+    const found = await harness.run("coach_search_knowledge", { keyword: "集合" });
+    const focusId = found.details.nodes.find((n) => n.name.includes("概念与表示")).id;
+    assert.equal(focusId, "数学::集合与逻辑::集合的概念与表示");
+    await harness.run("coach_complete_init", {
+      name: "测试学员",
+      firstElective: "物理",
+      secondElectives: ["化学", "生物"],
+      dailyMinutes: 60,
+      preferredTime: "晚上",
+      baselineBySubject: SUBJECTS.map((subject) => ({
+        subject,
+        note: "待课堂证据校准",
+        source: "self-report",
+      })),
+      schoolProgressBySubject: SUBJECTS.map((subject) => ({ subject, note: "高一当前进度" })),
+      longTermGoal: "建立广东高考六科基础",
+      initialFocus: [{ knowledgeId: focusId, reason: "学校正在学集合" }],
+      milestoneTitle: "学集合",
+      milestoneKnowledgeIds: [focusId],
+      milestoneSuccessCriteria: ["能独立说明集合概念"],
+    });
+    const profile = harness.readProfile();
+    assert.equal(profile.initialized, true);
+    assert.equal(profile.plan.currentFocus[0].knowledgeId, focusId);
+    assert.equal(profile.plan.milestones[0].knowledgeIds[0], focusId);
+    const state = await harness.run("coach_get_state", {});
+    assert.equal(state.details.summary.initialized, true);
+  } finally {
+    harness.cleanup();
+  }
+});
+
 test("reminder 扩展注册 3 个工具", async () => {
   const rem = await loadExtensions([join(ROOT, "extensions", "reminder", "index.ts")], ROOT);
   if (rem.errors.length > 0) throw new Error(JSON.stringify(rem.errors));

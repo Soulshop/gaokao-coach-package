@@ -30,7 +30,7 @@ bash scripts/setup.sh /path/to/学员工作目录
 
 | 目录 | 内容 | 生命周期 |
 | --- | --- | --- |
-| `extensions/coach/` | 教学扩展（12 个工具、状态机、SM-2、评分审计） | 随包版本 |
+| `extensions/coach/` | 教学扩展（13 个工具、状态机、SM-2、评分审计） | 随包版本 |
 | `extensions/reminder/` | 提醒控制扩展（reminder_get/set/test，渲染 plist + launchctl bootstrap） | 随包版本 |
 | `skills/` | `coach` 主规则 + `exam-orientation` 高考全貌 + `reminder` 提醒控制 | 随包版本 |
 | `prompts/` | `/coach` 开场流程 | 随包版本 |

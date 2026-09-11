@@ -29,7 +29,7 @@
 
 | 目录 | 内容 | 生命周期 |
 | --- | --- | --- |
-| `extensions/coach/` | 教学扩展（12 工具、状态机、SM-2、评分审计） | 随包版本提交 |
+| `extensions/coach/` | 教学扩展（13 工具、状态机、SM-2、评分审计） | 随包版本提交 |
 | `extensions/reminder/` | 提醒控制扩展（reminder_get/set/test，渲染 plist + launchctl bootstrap） | 随包版本提交 |
 | `templates/agents/` | 子代理定义（grading-auditor 评分复评员） | 随包版本提交 |
 | `skills/` | `coach` 主规则 + `exam-orientation` 高考全貌 + `reminder` 提醒控制 | 随包版本提交 |

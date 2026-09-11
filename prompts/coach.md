@@ -9,7 +9,7 @@ argument-hint: "[科目]"
 本次会话顺序：
 
 1. 调用 `coach_get_state`。
-2. 如果 `initialized=false`，只做初始化。一次只问一个初始化问题。信息齐全后调用 `coach_complete_init`。初始化后加载技能 `reminder`，问学员每日提醒时间并调 `reminder_set` 装载（首次弹系统通知权限框，提示学员允许）。
+2. 如果 `initialized=false`，只做初始化。一次只问一个初始化问题。确定主攻与里程碑前，先调用 `coach_search_knowledge` 按科目或关键词查到规范 `knowledgeId`，不得猜测。信息齐全后调用 `coach_complete_init`。初始化后加载技能 `reminder`，问学员每日提醒时间并调 `reminder_set` 装载（首次弹系统通知权限框，提示学员允许）。
 3. 如果已初始化，先读 `recentSessions`。若没有 `topic=高考全貌` 的记录，加载技能 `exam-orientation` 完成高考全貌引导，再继续。
 4. 调用 `coach_due_reviews`。先完成当天容量内的到期复习。
 5. 如果计划到期，调用 `coach_update_plan` 完成复盘。

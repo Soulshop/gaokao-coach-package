@@ -17,7 +17,8 @@ flowchart TB
     subgraph SESSION[每次教学会话]
         S1[coach_get_state 读状态] --> S2{已初始化?}
         S2 -->|否| S3[初始化引导<br>姓名 选科 时长 时段<br>六科基础与进度 长期目标 主攻 里程碑]
-        S3 --> S4[coach_complete_init 写入状态并生成两周计划]
+        S3 --> S3b[coach_search_knowledge<br>按科目或关键词查规范 knowledgeId<br>不靠猜测]
+        S3b --> S4[coach_complete_init 写入状态并生成两周计划]
         S4 --> S10[首次教学先执行高考全貌引导<br>技能 exam-orientation 先测后补<br>复述过关即止 只补讲缺口]
         S10 --> S1
         S2 -->|是 且无topic=高考全貌记录| S10
@@ -101,8 +102,8 @@ flowchart TB
         T --> SKILL[skills/coach/SKILL.md 教学规则<br>skills/exam-orientation/SKILL.md<br>skills/reminder/SKILL.md 提醒控制]
         T --> APP[templates/APPEND_SYSTEM.md<br>经 setup 部署到 .pi/APPEND_SYSTEM.md<br>常驻教学角色 教学会话流程]
         PROMPT -->|展开流程| SKILL
-        SKILL -->|调用 12 个 coach 工具| EXT[extensions/coach/index.ts<br>工具注册入口]
-        EXT --> CAT[catalog.ts 规范目录校验<br>读工作目录实例]
+        SKILL -->|调用 13 个 coach 工具| EXT[extensions/coach/index.ts<br>工具注册入口]
+        EXT --> CAT[catalog.ts 规范目录校验与只读检索<br>读工作目录实例]
         EXT --> TEACH[teaching.ts 回合状态机与门槛]
         EXT --> PLAN[plan.ts 两周计划与复盘]
         EXT --> SCHED[scheduler.ts SM-2 仅完整复习]

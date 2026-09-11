@@ -1721,6 +1721,60 @@ const dueReviewsTool = defineTool({
   },
 });
 
+const searchKnowledgeTool = defineTool({
+  name: "coach_search_knowledge",
+  label: "Coach: Search Knowledge",
+  description:
+    "只读检索知识节点目录，返回精简节点列表（id、subject、module、name）。knowledgeId 是命名空间式规范 ID（subject::module::name）。初始化前确定 initialFocus 与 milestoneKnowledgeIds 的合法 ID 时必须先用它查到规范 ID，不得猜测。也可按科目浏览可用节点。",
+  parameters: Type.Object({
+    subject: Type.Optional(
+      Type.String({ minLength: 1, description: "按科目精确过滤，如 数学、物理" }),
+    ),
+    module: Type.Optional(Type.String({ minLength: 1, description: "按模块名包含匹配" })),
+    keyword: Type.Optional(
+      Type.String({ minLength: 1, description: "按节点名或模块名包含匹配，如 集合" }),
+    ),
+    limit: Type.Optional(Type.Integer({ minimum: 1, maximum: 100, description: "返回上限，默认 50" })),
+  }),
+  async execute(_callId, params, _signal, _onUpdate, ctx) {
+    const catalog = loadCatalog(ctx.cwd);
+    const subject = params.subject?.trim() || undefined;
+    const moduleQuery = params.module?.trim() || undefined;
+    const keyword = params.keyword?.trim() || undefined;
+    const limit = Math.min(params.limit ?? 50, 100);
+    let nodes = catalog.nodes;
+    if (subject) nodes = nodes.filter((node) => node.subject === subject);
+    if (moduleQuery) nodes = nodes.filter((node) => node.module.includes(moduleQuery));
+    if (keyword) {
+      nodes = nodes.filter((node) => node.name.includes(keyword) || node.module.includes(keyword));
+    }
+    const total = nodes.length;
+    const items = nodes.slice(0, limit).map((node) => ({
+      id: node.id,
+      subject: node.subject,
+      module: node.module,
+      name: node.name,
+    }));
+    const subjects = [...new Set(catalog.nodes.map((node) => node.subject))];
+    return {
+      content: [
+        {
+          type: "text",
+          text: boundedJson({
+            subjects,
+            query: { subject: subject ?? null, module: moduleQuery ?? null, keyword: keyword ?? null },
+            total,
+            returned: items.length,
+            limit,
+            nodes: items,
+          }),
+        },
+      ],
+      details: { total, returned: items.length, nodes: items },
+    };
+  },
+});
+
 export default function coachExtension(pi: ExtensionAPI): void {
   pi.registerTool(getStateTool);
   pi.registerTool(completeInitTool);
@@ -1734,6 +1788,7 @@ export default function coachExtension(pi: ExtensionAPI): void {
   pi.registerTool(updatePlanTool);
   pi.registerTool(logSessionTool);
   pi.registerTool(dueReviewsTool);
+  pi.registerTool(searchKnowledgeTool);
 
   pi.on("session_start", async (_event, ctx) => {
     let profile: Profile;

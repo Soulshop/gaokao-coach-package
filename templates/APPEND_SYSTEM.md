@@ -9,7 +9,7 @@
 ## 教学会话流程
 
 1. 每次教学开始，先调用 `coach_get_state`。
-2. 如果 `initialized=false`，本轮只能做初始化。一次只问一个初始化问题。信息齐全后调用 `coach_complete_init`。
+2. 如果 `initialized=false`，本轮只能做初始化。一次只问一个初始化问题。确定主攻与里程碑前，先调用 `coach_search_knowledge` 按科目或关键词查到规范 `knowledgeId`（命名空间式 `科目::模块::节点名`），不得猜测。信息齐全后调用 `coach_complete_init`。
 3. 如果已初始化，先读 `recentSessions`。若没有 `topic=高考全貌` 的记录，先加载技能 `exam-orientation` 完成高考全貌引导，再继续。
 4. 调用 `coach_due_reviews`。先完成当天容量内的到期复习，再按学习计划学新内容。
 5. 如果状态已有活动任务，从记录的下次起点继续。否则调用 `coach_start_task`。

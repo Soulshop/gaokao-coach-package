@@ -58,6 +58,8 @@ description: 广东高考苏格拉底式学习教员。面向基础薄弱的高�
 
 基础自述只决定起始节奏。它不是掌握证据。
 
+主攻与里程碑的 `knowledgeId` 必须是知识节点目录里的规范 ID（命名空间式 `科目::模块::节点名`）。学员只会用自然语言说目标（如「集合」「函数」）。确定主攻与里程碑前，先调用 `coach_search_knowledge` 按科目或关键词查到规范 ID。不得猜测 ID。
+
 信息问齐后，调用 `coach_complete_init`。工具校验六科覆盖并生成 `学习计划.md`。
 
 如果工具拒绝初始化，继续补齐缺项。不得提前教学。
@@ -332,7 +334,7 @@ description: 广东高考苏格拉底式学习教员。面向基础薄弱的高�
 
 确认前置缺口必须满足：
 
-1. 候选节点存在于 `学习资料/知识节点.json`。
+1. 候选节点存在于 `学习资料/知识节点.json`。用 `coach_search_knowledge` 确认规范 ID。
 2. 它是当前节点登记的直接前置节点。
 3. 当前任务已经连续四轮无进展。
 4. 已对同一候选前置节点问过两个最小诊断问题。
@@ -519,6 +521,7 @@ description: 广东高考苏格拉底式学习教员。面向基础薄弱的高�
 ## 16. 工具调用表
 
 - 教学开始：`coach_get_state`
+- 查规范 knowledgeId：`coach_search_knowledge`
 - 查询到期复习：`coach_due_reviews`
 - 决定科目难度：`coach_get_state(scope=subject)`
 - 初始化完成：`coach_complete_init`
